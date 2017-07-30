@@ -3,7 +3,15 @@ var express = require("express");
 var router = express.Router();
 
 router.get("/", function (req, res) {
-  res.render("index", null);
+  var d = new Date();  
+  var daysOfWeek = [
+    {day:"M"},
+    {day:"Tu"},
+    {day:"W"},
+    {day:"Th"},
+    {day:"F"},
+    ]; 
+  res.render("index", daysOfWeek);
 });
 
 router.get("/rides", function (req, res) {

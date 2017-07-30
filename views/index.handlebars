@@ -1,1 +1,9 @@
-<h1>{{lunch}}</h1>
+<ul>
+  {{#each days}}
+    <li>
+      <div class='days' id={{this.day}}>
+        <h6>{{this.day}}</h6>
+      </div>
+    </li>
+  {{/each}}
+</ul>
