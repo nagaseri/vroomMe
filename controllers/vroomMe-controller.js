@@ -7,11 +7,11 @@ router.get("/", function (req, res) {
   console.log('rendering index page')  
   var daysOfWeek = {
     days:[
-      {day:"M"},
-      {day:"Tu"},
-      {day:"W"},
-      {day:"Th"},
-      {day:"F"},
+      {day:"M", rowOne: true},
+      {day:"Tu", rowOne: true},
+      {day:"W", rowOne: true},
+      {day:"Th", rowOne: false},
+      {day:"F", rowOne: false},
     ]}; 
   res.render("index", daysOfWeek);
 });

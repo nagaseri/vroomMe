@@ -1,12 +1,33 @@
-<div id='circles'>
+<div class='container' id='circles'>
+
+  <div class='row' id='rowOne'>
   {{#each days}}
-    <div class='days' id={{this.day}}>
-      <h6>{{this.day}}</h6>
+  {{#if this.rowOne}}
+    <div class='col-xs-4 day-wrap'>
+      <div class='days' id={{this.day}}> 
+        <h6>{{this.day}}</h6>
+      </div>
     </div>
+  {{/if}}
   {{/each}}
+  </div>
+
+  <div class='row' id='rowTwo'>
+    <div class='col-xs-2'></div>
+    {{#each days}}
+    {{#unless this.rowOne}}
+    <div class='col-xs-4 day-wrap'>
+      <div class='days' id={{this.day}}> 
+        <h6>{{this.day}}</h6>
+      </div>
+    </div>
+    {{/unless}}
+    {{/each}}
+    <div class='col-sm-2'></div>
+  </div>
 </div>
 <script>  
-  //set height the same as width
   var cw = $('.days').width();
   $('.days').css({'height':cw+'px'});
+  $('h6').css({'font-size':cw*0.5+'px'})
 </script>
