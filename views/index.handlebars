@@ -1,9 +1,12 @@
-<ul>
+<div id='circles'>
   {{#each days}}
-    <li>
-      <div class='days' id={{this.day}}>
-        <h6>{{this.day}}</h6>
-      </div>
-    </li>
+    <div class='days' id={{this.day}}>
+      <h6>{{this.day}}</h6>
+    </div>
   {{/each}}
-</ul>
+</div>
+<script>  
+  //set height the same as width
+  var cw = $('.days').width();
+  $('.days').css({'height':cw+'px'});
+</script>
