@@ -27,11 +27,18 @@ h1{
 	 width: 40%;
 }
 
-h6 {
+h5 {
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%); 
+}
+
+h6 {
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  transform: translate(-50%, -80%);
 }
 
 .container {
@@ -43,6 +50,7 @@ h6 {
   height: 40vh
 }
 .days {
+  cursor: pointer;
   position: relative;
   -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
