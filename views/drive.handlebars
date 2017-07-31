@@ -1,0 +1,102 @@
+<h1>Fill Out Your Driver Information</h1>
+<form class="driver_form" action="/" method="POST">
+
+  <div class="driver_form_time">
+    <label for="time">Time Range of Departure: </label> <br>
+      <input type="time" id="startTime"> <input type="time" id="endTime">
+  </div>
+  <br>
+
+  <div class="driver_form_addresses">
+    <label for="trip">Origin: </label><br>
+      <input type="text" name="tripOrigin" class="trip_origin" placeholder="Enter trip origin address"> <br>
+      <br>
+      
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select City   
+        <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          <li class="dropdown-header">Alameda County</li>
+            <li><a href="#">Alameda</a></li>
+            <li><a href="#">Berkeley</a></li>
+            <li><a href="#">Oakland</a></li>
+            <li><a href="#">Hayward</a></li>
+          <li class="dropdown-header">Contra Costa County</li>
+            <li><a href="#">Richmond</a></li>
+            <li><a href="#">El Cerrito</a></li>
+          <li class="dropdown-header">Marin County</li>
+            <li><a href="#">San Rafael</a></li>
+            <li><a href="#">Sausalito</a></li>
+          <li class="dropdown-header">Napa County</li>
+            <li><a href="#">Napa</a></li>
+            <li><a href="#">American Canyon</a></li>
+          <li class="dropdown-header">San Francisco County</li>
+            <li><a href="#">San Francisco</a></li>
+          <li class="dropdown-header">San Mateo County</li>
+            <li><a href="#">Atherton</a></li>
+            <li><a href="#">Belmont</a></li>
+          <li class="dropdown-header">Santa Clara County</li>
+            <li><a href="#">Campbell</a></li>
+            <li><a href="#">Cupertino</a></li>
+          <li class="dropdown-header">Solano County</li>
+            <li><a href="#">Rio Vista</a></li>
+            <li><a href="#">Fairfield</a></li>
+          <li class="dropdown-header">Sonoma County</li>
+            <li><a href="#">Sonoma</a></li>
+            <li><a href="#">Santa Rosa</a></li>
+        </ul>
+      </div>
+
+      <br>
+    <label for="trip">Destination: </label><br>
+      <input type="text" name="tripDestination" class="trip_destination" placeholder="Enter trip destination address"> <br>
+      <br>
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select City   
+        <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          <li class="dropdown-header">Alameda County</li>
+            <li><a href="#">Alameda</a></li>
+            <li><a href="#">Berkeley</a></li>
+            <li><a href="#">Oakland</a></li>
+            <li><a href="#">Hayward</a></li>
+          <li class="dropdown-header">Contra Costa County</li>
+            <li><a href="#">Richmond</a></li>
+            <li><a href="#">El Cerrito</a></li>
+          <li class="dropdown-header">Marin County</li>
+            <li><a href="#">San Rafael</a></li>
+            <li><a href="#">Sausalito</a></li>
+          <li class="dropdown-header">Napa County</li>
+            <li><a href="#">Napa</a></li>
+            <li><a href="#">American Canyon</a></li>
+          <li class="dropdown-header">San Francisco County</li>
+            <li><a href="#">San Francisco</a></li>
+          <li class="dropdown-header">San Mateo County</li>
+            <li><a href="#">Atherton</a></li>
+            <li><a href="#">Belmont</a></li>
+          <li class="dropdown-header">Santa Clara County</li>
+            <li><a href="#">Campbell</a></li>
+            <li><a href="#">Cupertino</a></li>
+          <li class="dropdown-header">Solano County</li>
+            <li><a href="#">Rio Vista</a></li>
+            <li><a href="#">Fairfield</a></li>
+          <li class="dropdown-header">Sonoma County</li>
+            <li><a href="#">Sonoma</a></li>
+            <li><a href="#">Santa Rosa</a></li>
+        </ul>
+      </div>
+  <br>
+
+  <div class="driver_form_price">
+    <label for="tripPrice">Trip Price: </label><br>
+      <input type="number" min="0.00" step="0.01" name="tripPrice" placeholder="$"> <br>
+  </div>
+  <br>
+
+  <div class="checkbox">
+    <label><input type="checkbox" value="">Recurring?</label>
+  </div>
+  <br>
+
+  <button type="search">Search</button>
+</form>
