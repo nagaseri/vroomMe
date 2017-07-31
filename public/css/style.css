@@ -1,8 +1,8 @@
 .driver_form {
   background: white;
-  margin: 100px;
+  margin: 30px;
   font-family: 'Open Sans', sans-serif;
-  padding: 70px 0;
+  padding: 50px 0;
   text-align: center;
 }
 
@@ -23,4 +23,16 @@ h1{
 .trip_destination{
 	 text-align: justify;
 	 width: 40%;
+}
+
+.rider_button{
+	margin: 10px;
+}
+
+.buttons{
+	padding: 10px;
+}
+
+.submit{
+	margin: 10px;
 }

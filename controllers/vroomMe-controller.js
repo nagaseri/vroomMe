@@ -17,9 +17,10 @@ var router = express.Router();
 // });
 
 router.get("/", function (req, res) {
-  console.log('rendering driver page')  
-  
-  res.render("drive");
+  // var d = new Date();
+  console.log('rendering index page')  
+
+  res.render("create");
 });
 
 router.get("/rides", function (req, res) {
