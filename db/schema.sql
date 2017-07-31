@@ -1,0 +1,14 @@
+CREATE DATABASE vroomme_db;
+
+USE vroomme_db;
+
+CREATE TABLE vroome(
+	id int NOT NULL AUTO_INCREMENT,
+    name VARCHAR(100),
+    rider BOOLEAN DEFAULT FALSE,
+    home_address VARCHAR(255),
+    work_address VARCHAR(255),
+    driver BOOLEAN DEFAULT FALSE,
+    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+);
