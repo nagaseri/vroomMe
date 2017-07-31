@@ -1,14 +1,26 @@
-.create-update-form {
-  padding: 5px;
-  margin: 5px;
-  background: aqua;
-}
-
-.form-group {
-  margin-bottom: 5px;
-  background: aqua;
+.driver_form {
+  background: white;
+  margin: 100px;
+  font-family: 'Open Sans', sans-serif;
+  padding: 70px 0;
+  text-align: center;
 }
 
 body{
-	background: aqua;
+	background: black;
+}
+
+h1{
+	text-align: center;
+	color: white;
+}
+
+.trip_origin{
+	 text-align: justify;
+	 width: 40%;
+}
+
+.trip_destination{
+	 text-align: justify;
+	 width: 40%;
 }

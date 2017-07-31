@@ -2,18 +2,24 @@ var express = require("express");
 
 var router = express.Router();
 
+// router.get("/", function (req, res) {
+//   // var d = new Date();
+//   console.log('rendering index page')  
+//   var daysOfWeek = {
+//     days:[
+//       {day:"M"},
+//       {day:"Tu"},
+//       {day:"W"},
+//       {day:"Th"},
+//       {day:"F"},
+//     ]}; 
+//   res.render("index", daysOfWeek);
+// });
+
 router.get("/", function (req, res) {
-  // var d = new Date();
-  console.log('rendering index page')  
-  var daysOfWeek = {
-    days:[
-      {day:"M"},
-      {day:"Tu"},
-      {day:"W"},
-      {day:"Th"},
-      {day:"F"},
-    ]}; 
-  res.render("index", daysOfWeek);
+  console.log('rendering driver page')  
+  
+  res.render("drive");
 });
 
 router.get("/rides", function (req, res) {
