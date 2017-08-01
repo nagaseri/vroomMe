@@ -31,7 +31,6 @@
 
   var today = new Date();
   var dayOfWeek = today.getDay();
-  console.log(`today is ${dayOfWeek}`)
   //logic to figure out which week to show  
   var week = []; 
   var grayDays = []; 
@@ -47,7 +46,6 @@
   //logic to add attributes to divs
   $('.days').each(function(i) {
     var date = (week[i].getMonth() + 1) + "/" + week[i].getDate();
-    console.log(date);
     $(this).attr('date', date);
     $(this).prepend('<h6>'+ date +'</h6>');
     //if the day has been passed, turn the bubble to gray
