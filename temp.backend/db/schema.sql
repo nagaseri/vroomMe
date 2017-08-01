@@ -15,8 +15,6 @@ CREATE TABLE `trips` (
 
 CREATE TABLE `user` (
     userName varchar (255) NOT NULL,
-    firstName varchar(255) NOT NULL,
-    lastName varchar(255) NOT NULL,
     carModel varchar (255),  
     PRIMARY KEY (id)
 );
