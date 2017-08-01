@@ -1,0 +1,61 @@
+<div class='container' id='circles'>
+
+  <div class='row' id='rowOne'>
+  {{#each days}}
+  {{#if this.rowOne}}
+    <div class='col-xs-4 day-wrap'>
+      <div class='days' id={{this.day}}> 
+        <h6>{{this.day}}</h6>
+      </div>
+    </div>
+  {{/if}}
+  {{/each}}
+  </div>
+
+  <div class='row' id='rowTwo'>
+    <div class='col-xs-2'></div>
+    {{#each days}}
+    {{#unless this.rowOne}}
+    <div class='col-xs-4 day-wrap'>
+      <div class='days' id={{this.day}}> 
+        <h6>{{this.day}}</h6>
+      </div>
+    </div>
+    {{/unless}}
+    {{/each}}
+    <div class='col-sm-2'></div>
+  </div>
+</div>
+<script>  
+  var cw = $('.days').width();
+  $('h6').css({'font-size':cw*0.5+'px'});
+  $('.days').css({'height':cw+'px'});
+  var today = new Date();
+  var dayOfWeek = today.getDay();
+  console.log(`today is ${dayOfWeek}`)  
+  var week = []; 
+  for (var i = 0; i< 5; i++) {
+    if (dayofweek === 6) {
+      week[i] = new Date(new Date().getTime() + (i + 2)* 24 * 60 * 60 * 1000);
+    } else {
+      week[i] = new Date(new Date().getTime() + ( i + 1 - dayofweek)* 24 * 60 * 60 * 1000)
+    }
+  }
+  $('.days').each(function(i) {
+    var date = (week[i].getMonth() + 1) + "/" + week[i].getDate();
+    console.log(date)
+    $(this).attr('date', date);
+  })
+
+  $('.days').on('click', function(){
+    var date = $(this).attr('date');
+    console.log(date, 'is being clicked')
+    $.ajax({
+      method: 'GET',
+      url: '/query',
+      data: date
+    }).done(function(){
+      console.log(date + ' is sent to server!')
+    })
+  })
+</script>

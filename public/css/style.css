@@ -1,0 +1,78 @@
+.driver_form {
+  background: white;
+  margin: 100px;
+  font-family: 'Open Sans', sans-serif;
+  padding: 70px 0;
+  text-align: center;
+}
+
+body{
+	background: black;
+  min-height: 100vh;
+  margin: 0
+}
+
+h1{
+	text-align: center;
+	color: white;
+}
+
+.trip_origin{
+	 text-align: justify;
+	 width: 40%;
+}
+
+.trip_destination{
+	 text-align: justify;
+	 width: 40%;
+}
+
+h5 {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%); 
+}
+
+h6 {
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  transform: translate(-50%, -80%);
+}
+
+.container {
+  min-height: 90vh;
+}
+
+
+.day-wrap {
+  height: 40vh
+}
+.days {
+  cursor: pointer;
+  position: relative;
+  -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    width: 100%;
+    max-width: 40vh;
+    min-height: 120px;
+    max-height: 100%;
+    background-color: lightblue;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.5), inset 2px 2px 4px rgba(0,0,0,.5);
+    -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), inset 2px 2px 4px rgba(0,0,0,.5);  
+    -moz-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), inset 2px 2px 4px rgba(0,0,0,.5);
+}
+
+#rowOne, #rowTwo {
+  height: 40vh;
+}
+#header{
+  height:10vh;
+  border-bottom: 2px solid black;
+}
+
+#circles{
+  margin-top: 5vh;
+}
