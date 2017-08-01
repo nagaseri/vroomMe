@@ -36,3 +36,14 @@ h1{
 .submit{
 	margin: 10px;
 }
+
+li{
+	padding: 5px;
+}
+
+#results_table{
+	background: white;
+	margin: 50px;
+	font-family: 'Open Sans', sans-serif;
+	width: 90%;
+}
