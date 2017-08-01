@@ -15,7 +15,7 @@ module.exports = function(app) {
   // GET route for getting all of the todos
   app.get("/", function(req, res) {
     // findAll returns all entries for a table when used with no options
-    db.vroomMe.findAll({}).then(function(vroomMe) {
+    db.Trip.findAll({}).then(function(vroomMe) {
       // We have access to the todos as an argument inside of the callback function
       res.render('index',{trips: vroomMe});
     });
@@ -26,7 +26,7 @@ module.exports = function(app) {
     // create takes an argument of an object describing the item we want to
     // insert into our table. In this case we just we pass in an object with a text
     // and complete property
-    db.vroomMe.create({
+    db.Trip.create({
       driverName: req.body.driverName,
       hasRider: req.body.hasRider,
       driverOrigin: req.body.driverOrigin,
@@ -44,7 +44,7 @@ module.exports = function(app) {
   // req.params.id
   app.delete("/api/vroomMe/:id", function(req, res) {
     // We just have to specify which todo we want to destroy with "where"
-    db.vroomMe.destroy({
+    db.Trip.destroy({
       where: {
         id: req.params.id
       }
@@ -58,7 +58,7 @@ module.exports = function(app) {
   app.put("/api/vroomMe", function(req, res) {
     // Update takes in an object describing the properties we want to update, and
     // we use where to describe which objects we want to update
-    db.vroomMe.update({
+    db.Trip.update({
       text: req.body.text,
       complete: req.body.complete
     }, {

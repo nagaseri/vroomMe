@@ -6,7 +6,9 @@
 // =============================================================
 var express = require("express");
 var bodyParser = require("body-parser");
-var Sequelize = require("sequelize");
+var methodOverride = require("method-override"); 
+var exphbs = require("express-handlebars");
+
 
 // Sets up the Express App
 // =============================================================
@@ -23,6 +25,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
+
+// Override with POST having ?_method=DELETE
+app.use(methodOverride("_method"));
+
+// Set handlebars to be the default for our views instead of html
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 
 // For Passport
 // session secret
