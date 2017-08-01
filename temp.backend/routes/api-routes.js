@@ -21,7 +21,7 @@ module.exports = function(app) {
     });
   });
 
-  // POST route for saving a new todo
+  // POST route for saving a new driver.
   app.post("/api/vroomMe", function(req, res) {
     // create takes an argument of an object describing the item we want to
     // insert into our table. In this case we just we pass in an object with a text
@@ -29,11 +29,11 @@ module.exports = function(app) {
     db.vroomMe.create({
       driverName: req.body.driverName,
       hasRider: req.body.hasRider,
-      driverOrigin: driverOrigin,
-      driverOriginCity: driverOriginCity,
-      driverDestination: driverDestination, 
-      driverDestiCity: driverDestiCity, 
-      startTime: startTime
+      driverOrigin: req.body.driverOrigin,
+      driverOriginCity: req.body.driverOriginCity,
+      driverDestination: req.body.driverDestination, 
+      driverDestiCity: req.body.driverDestiCity, 
+      startTime: req.body.startTime
     }).then(function(vroomMe) {
       // We have access to the new todo as an argument inside of the callback function
       res.json(vroomMe);
