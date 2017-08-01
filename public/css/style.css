@@ -7,9 +7,9 @@
 }
 
 body{
-	background: black;
-  min-height: 100vh;
-  margin: 0
+	min-height: 100vh;
+	margin: 0
+	background: grey;
 }
 
 h1{
@@ -75,4 +75,8 @@ h6 {
 
 #circles{
   margin-top: 5vh;
+}
+
+#confirmation{
+	text-align: center;
 }

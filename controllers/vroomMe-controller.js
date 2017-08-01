@@ -4,17 +4,18 @@ var router = express.Router();
 
 
 router.get("/", function (req, res) {
-  // var d = new Date();
-  console.log('rendering index page')  
-  var daysOfWeek = {
-    days:[
-      {day:"M", rowOne: true},
-      {day:"Tu", rowOne: true},
-      {day:"W", rowOne: true},
-      {day:"Th", rowOne: false},
-      {day:"F", rowOne: false},
-    ]}; 
-  res.render("index", daysOfWeek);
+  // // var d = new Date();
+  // console.log('rendering index page')  
+  // var daysOfWeek = {
+  //   days:[
+  //     {day:"M", rowOne: true},
+  //     {day:"Tu", rowOne: true},
+  //     {day:"W", rowOne: true},
+  //     {day:"Th", rowOne: false},
+  //     {day:"F", rowOne: false},
+  //   ]}; 
+  // res.render("index", daysOfWeek);
+  res.render("confirmation");
 });
 
 router.get("/query", function (req, res) {
