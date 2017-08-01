@@ -5,7 +5,8 @@ module.exports = function(sequelize, DataTypes) {
     driverOriginCity: DataTypes.STRING,
     driverDestination: DataTypes.STRING,
     driverDestiCity: DataTypes.STRING,
-    startTime: DataTypes.DATE
+    startTime: DataTypes.DATE,
+    price: DataTypes.INTEGER
   });
   console.log('trips.js is done running')
   return Trip;

@@ -17,16 +17,8 @@ module.exports = function (router){
 
   //query page 
   router.get("/query", function (req, res) {
-    console.log("You clicked on " + Object.keys(req.query)[0])
-    // var  hbsObject = {
-    //   rides: [{
-    //     rider: 'Chi',
-    //     origin: 'oakland',
-    //     destination: 'san francisco'
-    //   }]
-    // };
-    // console.log(hbsObject);
-    // res.render("query", hbsObject);
+    
+    res.render("query", {layout: 'main'});
   });
 
 

@@ -4,9 +4,9 @@
   {{#each days}}
   {{#if this.rowOne}}
     <div class='col-xs-4 day-wrap'>
-      <div class='days center-block' id={{this.day}}> 
+      <a href='/query'><div class='days center-block'> 
         <h5>{{this.day}}</h5>
-      </div>
+      </div></a>
     </div>
   {{/if}}
   {{/each}}
@@ -17,9 +17,9 @@
     {{#each days}}
     {{#unless this.rowOne}}
     <div class='col-xs-4 day-wrap'>
-      <div class='days center-block' id={{this.day}}> 
+      <a href='/query'><div class='days center-block'> 
         <h5>{{this.day}}</h5>
-      </div>
+      </div></a>
     </div>
     {{/unless}}
     {{/each}}
@@ -28,7 +28,6 @@
 </div>
 <script>  
   
-
   var today = new Date();
   var dayOfWeek = today.getDay();
   //logic to figure out which week to show  
@@ -56,13 +55,13 @@
 
   $('.days').on('click', function(){
     var date = $(this).attr('date');
-    console.log(date, 'is being clicked')
     $.ajax({
       method: 'GET',
-      url: '/query',
+      url: '/days',
       data: date
-    }).done(function(){
+    }).done(function(data){
       console.log(date + ' is sent to server!')
+      console.log(data)
     })
   })
 

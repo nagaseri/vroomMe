@@ -41,6 +41,11 @@ h6 {
   transform: translate(-50%, -80%);
 }
 
+a {
+  color: black;
+  text-decoration: none; /* no underline */
+}
+
 .container {
   min-height: 90vh;
 }

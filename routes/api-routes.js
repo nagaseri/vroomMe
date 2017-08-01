@@ -1,4 +1,12 @@
+var day = ''; 
+
 module.exports = function (app) {
+
+  app.get("/days", function (req, res) {
+    console.log("You clicked on " + Object.keys(req.query)[0])
+    day = Object.keys(req.query)[0];
+  })
+
   //TODO: check route 
   // app.get("/SQLresults", function(req, res) {
   //   console.log('getting a get request to show all SQL results')

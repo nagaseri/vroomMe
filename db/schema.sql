@@ -20,6 +20,7 @@ CREATE TABLE trips (
   driverDestination varchar (255) NOT NULL,
   driverDestiCity varchar (255) NOT NULL,
   startTime DATETIME,
+  price Int(11) DEFAULT 0,
   PRIMARY KEY (id),
   FOREIGN KEY (driverId)
     REFERENCES users(id),
