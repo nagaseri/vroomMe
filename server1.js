@@ -12,6 +12,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 //server logic
-const routes = require("./controllers/vroomMe-controller.js");
+require("./routes/html-routes.js")(app, passport);
+require("./routes/api-routes.js")(app);
 app.use("/", routes);
 app.listen(port,() => (console.log(`Server is running on port ${port}`)));
+
+//TODO: add passport

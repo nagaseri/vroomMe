@@ -4,8 +4,8 @@
   {{#each days}}
   {{#if this.rowOne}}
     <div class='col-xs-4 day-wrap'>
-      <div class='days' id={{this.day}}> 
-        <h6>{{this.day}}</h6>
+      <div class='days center-block' id={{this.day}}> 
+        <h5>{{this.day}}</h5>
       </div>
     </div>
   {{/if}}
@@ -17,8 +17,8 @@
     {{#each days}}
     {{#unless this.rowOne}}
     <div class='col-xs-4 day-wrap'>
-      <div class='days' id={{this.day}}> 
-        <h6>{{this.day}}</h6>
+      <div class='days center-block' id={{this.day}}> 
+        <h5>{{this.day}}</h5>
       </div>
     </div>
     {{/unless}}
@@ -27,24 +27,33 @@
   </div>
 </div>
 <script>  
-  var cw = $('.days').width();
-  $('h6').css({'font-size':cw*0.5+'px'});
-  $('.days').css({'height':cw+'px'});
+  
+
   var today = new Date();
   var dayOfWeek = today.getDay();
-  console.log(`today is ${dayOfWeek}`)  
+  console.log(`today is ${dayOfWeek}`)
+  //logic to figure out which week to show  
   var week = []; 
+  var grayDays = []; 
   for (var i = 0; i< 5; i++) {
-    if (dayofweek === 6) {
+    if (dayOfWeek === 6) {
       week[i] = new Date(new Date().getTime() + (i + 2)* 24 * 60 * 60 * 1000);
     } else {
-      week[i] = new Date(new Date().getTime() + ( i + 1 - dayofweek)* 24 * 60 * 60 * 1000)
+      var dayShift = i + 1 - dayOfWeek;
+      if (dayShift < 0) grayDays.push(i);
+      week[i] = new Date(new Date().getTime() + dayShift * 24 * 60 * 60 * 1000);
     }
   }
+  //logic to add attributes to divs
   $('.days').each(function(i) {
     var date = (week[i].getMonth() + 1) + "/" + week[i].getDate();
-    console.log(date)
+    console.log(date);
     $(this).attr('date', date);
+    $(this).prepend('<h6>'+ date +'</h6>');
+    //if the day has been passed, turn the bubble to gray
+    if (grayDays.indexOf(i) !== -1) {
+      $(this).css({'background-color': 'gray'});
+    }
   })
 
   $('.days').on('click', function(){
@@ -58,4 +67,10 @@
       console.log(date + ' is sent to server!')
     })
   })
+
+  //logic to make circles have equal height and width and appropriate font size
+  var cw = $('.days').width();
+  $('h5').css({'font-size':cw*0.5+'px'});
+  $('h6').css({'font-size':cw*0.1+'px'});
+  $('.days').css({'height':cw+'px'});
 </script>

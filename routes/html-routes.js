@@ -1,10 +1,9 @@
-var express = require("express");
-
-var router = express.Router();
 
 
+module.exports = function (router){
+
+//index page
 router.get("/", function (req, res) {
-  // var d = new Date();
   console.log('rendering index page')  
   var daysOfWeek = {
     days:[
@@ -17,6 +16,7 @@ router.get("/", function (req, res) {
   res.render("index", daysOfWeek);
 });
 
+//query page 
 router.get("/query", function (req, res) {
   console.log("You clicked on " + Object.keys(req.query)[0])
   var  hbsObject = {
@@ -30,16 +30,23 @@ router.get("/query", function (req, res) {
   // res.render("query", hbsObject);
 });
 
-module.exports = router; 
 
-router.post("/new/ride", function (req, res) {
-  //TODO: add logic to add new ride request
-  res.redirect("/results");
-});
+//login page
+router.get('/profile', function (req, res, next) {
+	if(req.isAuthenticated()) return next();
+	res.redirect('/login');
+}, function(req, res){
+		res.render('profile', { user: req.body.user });
+	});
 
-router.post("/new/drive", function (req, res) {
-  //TODO: add logic to add new drive service
-  res.redirect("/results");
-});
+//authenticate logic
+app.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'email']}));
 
-module.exports = router;
+app.get('/auth/google/callback', passport.authenticate('google', {
+  successRedirect: '/profile',
+	failureRedirect: '/login' 
+}));
+
+//TODO: add log out page?  
+
+}
