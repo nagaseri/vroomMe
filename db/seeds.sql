@@ -1,0 +1,16 @@
+
+
+
+
+INSERT INTO trips (driverName, hasRider, driverOrigin, driverOriginCity, driverDestination, driverDestiCity, startTime, createdAt, updatedAt) VALUES ('John Depp',false,'null','Oakland','null','San Francisco', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO trips (driverName, hasRider, driverOrigin, driverOriginCity, driverDestination, driverDestiCity, startTime, createdAt, updatedAt) VALUES ('Erica Coin',false,'null','Alameda','null','San Francisco', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO trips (driverName, hasRider, driverOrigin, driverOriginCity, driverDestination, driverDestiCity, startTime, createdAt, updatedAt) VALUES ('Doran Van Heynigan',false,'null','Berkeley','null','San Francisco', 9, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO trips (driverName, hasRider, driverOrigin, driverOriginCity, driverDestination, driverDestiCity, startTime, createdAt, updatedAt) VALUES ('Tina Fey',false,'null','Fremont','null','San Jose', 7, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO trips (driverName, hasRider, driverOrigin, driverOriginCity, driverDestination, driverDestiCity, startTime, createdAt, updatedAt) VALUES ('Jeremy Falls',false,'null','El Cerrito','null','San Jose', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO trips (driverName, hasRider, driverOrigin, driverOriginCity, driverDestination, driverDestiCity, startTime, createdAt, updatedAt) VALUES ('Geena Davis',false,'null','Daly City','null','Hayward', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO trips (driverName, hasRider, driverOrigin, driverOriginCity, driverDestination, driverDestiCity, startTime, createdAt, updatedAt) VALUES ('Liam Neeson',false,'null','Brisbane','null','Berkeley', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO trips (driverName, hasRider, driverOrigin, driverOriginCity, driverDestination, driverDestiCity, startTime, createdAt, updatedAt) VALUES ('Vincent Price',false,'null','Crockett','null','Walnut Creek', 9, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO trips (driverName, hasRider, driverOrigin, driverOriginCity, driverDestination, driverDestiCity, startTime, createdAt, updatedAt) VALUES ('Barbara Stanwyck',false,'null','Danville','null','Berkeley', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO trips (driverName, hasRider, driverOrigin, driverOriginCity, driverDestination, driverDestiCity, startTime, createdAt, updatedAt) VALUES ('Meryl Streep',false,'null','Berkeley','null','San Jose', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO trips (driverName, hasRider, driverOrigin, driverOriginCity, driverDestination, driverDestiCity, startTime, createdAt, updatedAt) VALUES ('Jim Beam',false,'null','Union City','null','San Francisco', 7, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO trips (driverName, hasRider, driverOrigin, driverOriginCity, driverDestination, driverDestiCity, startTime, createdAt, updatedAt) VALUES ('Rebecca DeMornay',false,'null','Castro Valley','null','San Jose', 7, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
