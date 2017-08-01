@@ -1,0 +1,28 @@
+<h1> VroomMe Carpool page </h1>
+<img src="../assets/img/coolpool.jpg">
+
+
+  <div class="container">
+    <div class="row">
+      <div class = "page-header">
+        <h2> Pick a driver </h2>
+        <ul>
+          {{#each trips}}
+            {{#unless this.hasRider}}
+
+              <li>
+                <div class="col-md-6">
+                  <p><b> {{this.driverName}} </b> + " == " + {{this.driverOriginCity}} + " , " + {{this.driverDestiCity}} + " , " + {{this.startTime}} </p>
+                
+                  <form action="api/vroomme/update/{{this.id}}?_method=PUT" method="POST">
+                    <input type="hidden" name="hasRider" value="true">
+                    <button type="submit">Select this driver</button>
+                  </form>
+                </div>
+              </li>
+            {{/unless}}
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  </div>
