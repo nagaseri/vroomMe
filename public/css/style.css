@@ -76,3 +76,12 @@ h6 {
 #circles{
   margin-top: 5vh;
 }
+
+#confirmation{
+	text-align: center;
+}
+
+#driver_button{
+    opacity: 0.6;
+    cursor: not-allowed;
+}

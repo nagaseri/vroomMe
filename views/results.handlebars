@@ -1,0 +1,86 @@
+<h1 class="display-3">Search Results</h1>
+
+<div class="searching">
+  <
+</div>
+
+<table class="table table-hover" id="results_table">
+  <thead>
+    <tr>
+      <th><h3>Driver Name</h3></th>
+      <th><h3>Trip Time</h3></th>
+      <th><h3>Car Model</h3></th>
+      <th><h3>Trip Price</h3></th>
+      <th><h3>Origin</h3></th>
+      <th><h3>Destination</h3></th>
+      <th><h3>Select</h3></th>
+    </tr>
+  </thead>
+  <tbody>
+    <hr>
+    <tr>
+      <ul>
+        {{#each trips}}
+            <td>{{this.driverName}}</td>
+            <td>{{this.startTime}}</td>
+            <td>{{this.carModel}}</td>
+            <td>{{this.driverOrigin}}</td>
+            <td>{{this.driverDestination}}</td>
+            <td>{{this.tripPrice}}</td>
+            <td><button type="submit" class="glyphicon glyphicon-plus"></button></td>
+        {{/each}}
+      </ul>
+    </tr>
+  </tbody>
+</table>
+
+<script type="text/javascript">
+//get information from mySQL db of trips with same origin and destination cities
+$("#show").click(function(){
+    $("p").show();
+});
+
+$.done(function(response){
+    $("results_table").show();
+});
+//send to goole api
+  $.ajax({
+    url: queryURL,
+    method: "GET"       
+  })
+  .done(function(response) {
+    endCoordLat = response.routes[0].legs[0].end_location.lat;
+      console.log(endCoordLat); 
+    endCoordLng = response.routes[0].legs[0].end_location.lng;
+      console.log(endCoordLng); 
+    startCoordLat = response.routes[0].legs[0].start_location.lat;
+      console.log(startCoordLat); 
+    startCoordLng = response.routes[0].legs[0].start_location.lng;
+      console.log(startCoordLng);  
+    initMapAgain(); 
+    var travelDistance = $("#travel-distance").text(response.routes[0].legs[0].distance.text);
+      console.log(travelDistance)
+    var travelTime = $("#travel-time").text(response.routes[0].legs[0].duration.text);
+      console.log(travelTime); 
+    //<myGasFeed stuff NEW>
+    var ajaxCBFunc = function (res){
+      closestGasPrice = JSON.parse(res).stations[0].reg_price;
+      convertedDistance = parseInt(travelDistance[0].innerText.slice(0, -3))
+      console.log('travelDistance', convertedDistance)
+      console.log('closestGasPrice is ', closestGasPrice)
+      console.log(`Estimated fuel cost is ${convertedDistance / MPG * closestGasPrice}`)
+      var updatedCost = convertedDistance / MPG * closestGasPrice;
+      $('#fuel-cost').html(`$${updatedCost.toFixed(2)} (rough estimate)`)
+    }
+    var ajaxCall = function (){
+      $.ajax({
+        url:MGF,
+        method: 'get'
+      }).done(function(res) {ajaxCBFunc(res)})
+        .fail(function (){
+          $('#fuel-cost').html('Calculating');
+          console.log('calling myGasFeed API again')
+          setTimeout(ajaxCall, 1000);
+        })
+    }
+</script>

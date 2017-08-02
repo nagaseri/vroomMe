@@ -1,0 +1,56 @@
+<h1 class="display-3">Fill Out Your Driver Information</h1>
+<form class="driver_form" action="/" method="POST">
+  <div class="buttons">
+    <button type="submit" class="rider_button" href="#">RIDE</button>
+    <button type="submit" class="driver_button" href="#">DRIVE</button>
+  </div>
+  
+  <div class="driver_form_time">
+    <label for="time">Time of Departure: </label> <br>
+      <input type="time" id="startTime"> 
+  </div>
+  <br>
+
+  <div class="driver_form_addresses">
+    <label for="trip">Origin: </label><br>
+      <input type="text" name="tripOrigin" class="trip_origin" placeholder="Enter trip origin address"> <br>
+      <br>
+    <label for="trip">City: </label><br>
+      <input type="text" name="tripOrigin" class="origin_city" placeholder="Enter city name">  
+      
+      <br>
+      <br>
+    <label for="trip">Destination: </label><br>
+      <input type="text" name="tripDestination" class="trip_destination" placeholder="Enter trip destination address"> <br>
+      <br>
+      <label for="trip">City: </label><br>
+      <input type="text" name="tripOrigin" class="destination_city" placeholder="Enter city name">  
+      
+  <br>
+  <br>
+  <button type="submit" class="submit" href="#"> Submit </button>
+
+
+  
+<div id="driver_modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">
+          <strong> Enter the trip price: </strong>
+        </h2>
+      </div>
+      <div class="modal-body">
+        <div class="driver_form_price">
+          <label for="tripPrice">Trip Price: </label><br>
+            <input type="number" min="0.00" step="0.01" name="tripPrice" placeholder="$"> 
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"> Submit </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</form>
