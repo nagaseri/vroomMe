@@ -2,8 +2,7 @@ console.log('auth.js is being called!')
 var path = require('path');
 
 var URL = "";
-//TODO
-if (process.env.PORT) URL = path.join(__dirname, '/auth/google/callback')
+if (process.env.PORT) URL = 'https://vroom-me.herokuapp.com/auth/google/callback';
 else URL = "http://localhost:3000/auth/google/callback"
 
 module.exports = {
