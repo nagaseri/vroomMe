@@ -151,7 +151,8 @@
     console.log(newTrip);
     //create for driver
       $.post("/create", newTrip)
-      .done(function(data) {
+
+      .done(function(data, res) {
         console.log(data, "You've posted the new trip!");
         res.redirect("/auth/google");
       });

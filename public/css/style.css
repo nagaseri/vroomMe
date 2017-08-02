@@ -83,6 +83,15 @@ a {
 }
 
 #confirmation{
+<<<<<<< HEAD
+	text-align: center;
+}
+
+#driver_button{
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+=======
     text-align: center;
 }
 
@@ -138,3 +147,4 @@ a {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
+>>>>>>> a6071b997c0f754d077d4a6157c2d1c2640ca1fe
