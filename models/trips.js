@@ -8,6 +8,6 @@ module.exports = function(sequelize, DataTypes) {
     startTime: DataTypes.DATE,
     price: DataTypes.INTEGER
   });
-  console.log('trips.js is done running')
+  console.log('trips.js is loaded')
   return Trip;
 };

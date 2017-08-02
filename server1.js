@@ -23,6 +23,7 @@ require("./routes/api-routes.js")(app);
 
 //data base
 var db = require('./models');
+console.log('all models and route js files loaded correctly')
 db.sequelize.sync({force: false}).then(function(){
   app.listen(port, function() {
     console.log(`Server is running on port ${port}`)

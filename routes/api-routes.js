@@ -58,5 +58,5 @@ module.exports = function (app) {
   //   });
   // });  
   // app.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'email']}));
-  console.log('api-routes.js is done running')
+  console.log('api-routes.js is loaded')
 }

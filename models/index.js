@@ -8,9 +8,14 @@ var env       = process.env.NODE_ENV || 'development';
 var config    = require(__dirname + '/../config/config.json')[env];
 var db        = {};
 
+console.log(`Process.env is`)
+console.log(process.env)
+
 if (config.use_env_variable) {
+  console.log('Sequelize is on deployed machine')
   var sequelize = new Sequelize(process.env[config.use_env_variable]);
 } else {
+  console.log('Sequelize is on local machine')
   var sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 fs
@@ -30,5 +35,5 @@ Object.keys(db).forEach(function(modelName) {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
-console.log('index.js is done running!')
+console.log('index.js is loaded')
 module.exports = db;

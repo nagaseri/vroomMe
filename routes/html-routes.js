@@ -40,5 +40,5 @@ module.exports = function (router){
   // }));
 
   //TODO: add log out page?  
-  console.log('html-routes.js is done running')
+  console.log('html-routes.js is loaded')
 }
