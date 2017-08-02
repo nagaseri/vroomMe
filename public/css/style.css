@@ -1,15 +1,36 @@
-.driver_form {
-  background: white;
-  margin: 100px;
-  font-family: 'Open Sans', sans-serif;
-  padding: 70px 0;
-  text-align: center;
+#login_button{
+    float: right;
+}
+
+.navbar{
+    background-color: white;
+    opacity: 0.7;
+}
+
+.form{
+    background-color: white;
+    opacity: 0.8;
+    font-family: 'Open Sans', sans-serif;
+    padding: 30px 0;
+    text-align: center;
+    width: 600px;
+    align-content: center;
+    margin-left: 300px;
+    margin-bottom: 50px;
+    margin-top: 50px;
 }
 
 body{
-	background: black;
-  min-height: 100vh;
-  margin: 0
+	background-image: url("car.jpeg");
+  background-size: 100%;
+}
+
+img{
+    opacity: 0.4;
+}
+
+li{
+    display: inline-block;
 }
 
 h1{
@@ -82,22 +103,9 @@ a {
   margin-top: 5vh;
 }
 
-#confirmation{
-<<<<<<< HEAD
-	text-align: center;
-}
-
 #driver_button{
     opacity: 0.6;
     cursor: not-allowed;
-}
-=======
-    text-align: center;
-}
-
-#driver_button{
-   opacity: 0.6;
-   cursor: not-allowed;
 }
 
 .card {
@@ -147,4 +155,3 @@ a {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
->>>>>>> a6071b997c0f754d077d4a6157c2d1c2640ca1fe
