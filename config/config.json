@@ -14,6 +14,7 @@
     "dialect": "mysql"
   },
   "production": {
+    "use_env_variable": "JAWSDB_URL",
     "username": "lrswt41tf6o0fcyx",
     "password": "jd4qhbudlqn7qt7v",
     "database": "vroomme_db",
