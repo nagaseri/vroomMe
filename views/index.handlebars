@@ -4,9 +4,9 @@
   {{#each days}}
   {{#if this.rowOne}}
     <div class='col-xs-4 day-wrap'>
-      <div class='days center-block' id={{this.day}}> 
+      <a href='/query'><div class='days center-block'> 
         <h5>{{this.day}}</h5>
-      </div>
+      </div></a>
     </div>
   {{/if}}
   {{/each}}
@@ -17,9 +17,9 @@
     {{#each days}}
     {{#unless this.rowOne}}
     <div class='col-xs-4 day-wrap'>
-      <div class='days center-block' id={{this.day}}> 
+      <a href='/query'><div class='days center-block'> 
         <h5>{{this.day}}</h5>
-      </div>
+      </div></a>
     </div>
     {{/unless}}
     {{/each}}
@@ -28,10 +28,8 @@
 </div>
 <script>  
   
-
   var today = new Date();
   var dayOfWeek = today.getDay();
-  console.log(`today is ${dayOfWeek}`)
   //logic to figure out which week to show  
   var week = []; 
   var grayDays = []; 
@@ -47,7 +45,6 @@
   //logic to add attributes to divs
   $('.days').each(function(i) {
     var date = (week[i].getMonth() + 1) + "/" + week[i].getDate();
-    console.log(date);
     $(this).attr('date', date);
     $(this).prepend('<h6>'+ date +'</h6>');
     //if the day has been passed, turn the bubble to gray
@@ -58,13 +55,13 @@
 
   $('.days').on('click', function(){
     var date = $(this).attr('date');
-    console.log(date, 'is being clicked')
     $.ajax({
       method: 'GET',
-      url: '/query',
+      url: '/days',
       data: date
-    }).done(function(){
+    }).done(function(data){
       console.log(date + ' is sent to server!')
+      console.log(data)
     })
   })
 

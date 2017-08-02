@@ -1,11 +1,10 @@
-var LocalStrategy = require('passport-local').Strategy;
+console.log('passport is being called')
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 var db = require('../app/models/');
 var configAuth = require('./auth');
 
 module.exports = function(passport) {
-
 	passport.serializeUser(function(user, done){
 		done(null, user.id);
 	});
@@ -22,8 +21,9 @@ module.exports = function(passport) {
 	    callbackURL: configAuth.googleAuth.callbackURL
 	  },
 	  function(accessToken, refreshToken, profile, done) {
-      //TODO: update it so it checks JAWSDB instead of local
-      db.Users.findOne({'name': profile.id}, function(err, user){
+      console.log('before finding a user')
+
+      db.Users.findOne({'userName': profile.id}, function(err, user){
         if(err)
           return done(err);
         if(user)
@@ -31,7 +31,7 @@ module.exports = function(passport) {
         else {
           db.Users.create({
             ///TODO: check table column
-            name : profile.displayName,
+            userName : profile.displayName,
             // newUser.google.email : profile.emails[0].value;
             // newUser.google.token : accessToken;
           }).then(function(data){

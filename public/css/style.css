@@ -41,6 +41,11 @@ h6 {
   transform: translate(-50%, -80%);
 }
 
+a {
+  color: black;
+  text-decoration: none; /* no underline */
+}
+
 .container {
   min-height: 90vh;
 }
@@ -75,4 +80,13 @@ h6 {
 
 #circles{
   margin-top: 5vh;
+}
+
+#confirmation{
+    text-align: center;
+}
+
+#driver_button{
+   opacity: 0.6;
+   cursor: not-allowed;
 }
