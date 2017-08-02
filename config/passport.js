@@ -1,20 +1,22 @@
 console.log('passport is being called')
+var colors = require('colors')
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 var db = require('../models/');
 var configAuth = require('./auth');
 
-module.exports = function(passport) {
+var passport = {};
+
+passport.func = function(passport) {
+  var that = this;  
 	passport.serializeUser(function(user, done){
 		console.log('serializeUser is being called!')
-    console.log(`user is ${user}`)
     done(null, user.id);
 	});
 
 	passport.deserializeUser(function(id, done){
-    console.log('deserializeUser is being called!')
-    console.log(`id is ${id}`)
-		db.users.findOne({ where: {id: id} }, function(err, user){
+    console.log(colors.red('deserializeUser is being called!'))
+		db.users.findOne({ where: {'userName': id} }).then( function(err, user){
 			done(err, user);
 		});
 	});
@@ -32,6 +34,7 @@ module.exports = function(passport) {
           if(user){
             console.log('user found!')
             console.log(user);
+            that.user = user
             return done(null, user);
           }
           else {
@@ -43,7 +46,8 @@ module.exports = function(passport) {
               // newUser.google.token : accessToken;
             }).then(function(data){
               console.log('done creating a new user')
-              console.log(profile);
+              console.log(data);
+              that.user = data;  
               return done(null, data);
             })
           }
@@ -53,3 +57,7 @@ module.exports = function(passport) {
 	));
 
 };
+
+passport.user = {};
+
+module.exports = passport; 

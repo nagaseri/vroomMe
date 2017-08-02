@@ -5,10 +5,10 @@ USE vroomme_db;
 
 CREATE TABLE users (
   id INT auto_increment,
-  userName varchar (255) NOT NULL,
+  userName varchar (255) unique NOT NULL,
   carModel varchar (255) DEFAULT null,  
-  createdAt datetime,
-  updatedAt datetime,
+  createdAt timestamp DEFAULT current_timestamp,
+  updatedAt timestamp DEFAULT current_timestamp,
   PRIMARY KEY (id)
 );
 
@@ -33,12 +33,11 @@ CREATE TABLE trips (
     ON UPDATE CASCADE
 );
 
-INSERT INTO users (userName, carModel) VALUES ('tmedley', '2004 Honda Accord');
-INSERT INTO users (userName, carModel) VALUES ('vscully', '');
-INSERT INTO users (userName, carModel) VALUES ('mdietrick', '');
-INSERT INTO users (userName, carModel) VALUES ('ashowls', '2015 Dodge Dart');
+INSERT INTO users (userName, carModel) VALUES ('Alex Ratliff', '2004 Honda Accord');
+INSERT INTO users (userName, carModel) VALUES ('Chi Lu', '');
+INSERT INTO users (userName, carModel) VALUES ('Anish Dabade', '');
+INSERT INTO users (userName, carModel) VALUES ('Eri Nagase', '2015 Dodge Dart');
 
 SELECT * FROM users;
-SELECT * FROM TRIPS;
-
+SELECT * FROM trips;
 
