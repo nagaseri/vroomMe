@@ -12,7 +12,7 @@ CREATE TABLE users (
 
 CREATE TABLE trips (
   id INT auto_increment,
-  driverId  int DEFAULT 0;
+  driverId  int DEFAULT 0,
   hasRider BOOLEAN,
   riderId int DEFAULT 0,
   driverOrigin varchar (255) NOT NULL,
