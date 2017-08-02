@@ -1,56 +1,160 @@
 <h1 class="display-3">Fill Out Your Driver Information</h1>
 <form class="driver_form" action="/" method="POST">
+
   <div class="buttons">
     <button type="submit" class="rider_button" href="#">RIDE</button>
     <button type="submit" class="driver_button" href="#">DRIVE</button>
   </div>
-  
+ 
+  <h1>Fill Out Your Driver Information</h1>
+<form class="driver_form" action="/" method="POST">
+
   <div class="driver_form_time">
-    <label for="time">Time of Departure: </label> <br>
-      <input type="time" id="startTime"> 
+    <label for="time">Desired Time of Departure: </label> <br>
+      <div class="dropdown" id="time_selection">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> <span id="selected">Select Time</span>
+        <span class="caret"></span></button>
+        <ul class="dropdown-menu" id="time_dropdown">
+          <li class="dropdown-header">Morning</li>
+            <li><a href="#">6:00am</a></li>
+            <li><a href="#">7:00am</a></li>
+            <li><a href="#">8:00am</a></li>
+            <li><a href="#">9:00am</a></li>
+            <li><a href="#">10:00am</a></li>
+            <li><a href="#">11:00am</a></li>
+          <li class="dropdown-header">Afternoon</li>
+            <li><a href="#">3:00pm</a></li>
+            <li><a href="#">4:00pm</a></li>
+            <li><a href="#">5:00pm</a></li>
+            <li><a href="#">6:00pm</a></li>
+            <li><a href="#">7:00pm</a></li>
+            <li><a href="#">8:00pm</a></li>
+        </ul>
+      </div>
   </div>
   <br>
 
   <div class="driver_form_addresses">
     <label for="trip">Origin: </label><br>
-      <input type="text" name="tripOrigin" class="trip_origin" placeholder="Enter trip origin address"> <br>
+      <input type="text" name="tripOrigin" id="trip_origin" placeholder="Enter trip origin address"> <br>
+      <br>      
+      <div class="dropdown" id="city_origin">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select City
+        <!-- <span id="select">Select City</span>    -->
+        <span class="caret"></span></button>
+        <ul class="dropdown-menu" id="origin_dropdown">
+          <li class="dropdown-header">Alameda County</li>
+            <li><a href="#">Alameda</a></li>
+            <li><a href="#">Berkeley</a></li>
+            <li><a href="#">Oakland</a></li>
+            <li><a href="#">Hayward</a></li>
+          <li class="dropdown-header">Contra Costa County</li>
+            <li><a href="#">Richmond</a></li>
+            <li><a href="#">El Cerrito</a></li>
+          <li class="dropdown-header">Marin County</li>
+            <li><a href="#">San Rafael</a></li>
+            <li><a href="#">Sausalito</a></li>
+          <li class="dropdown-header">Napa County</li>
+            <li><a href="#">Napa</a></li>
+            <li><a href="#">American Canyon</a></li>
+          <li class="dropdown-header">San Francisco County</li>
+            <li><a href="#">San Francisco</a></li>
+          <li class="dropdown-header">San Mateo County</li>
+            <li><a href="#">Atherton</a></li>
+            <li><a href="#">Belmont</a></li>
+          <li class="dropdown-header">Santa Clara County</li>
+            <li><a href="#">Campbell</a></li>
+            <li><a href="#">Cupertino</a></li>
+          <li class="dropdown-header">Solano County</li>
+            <li><a href="#">Rio Vista</a></li>
+            <li><a href="#">Fairfield</a></li>
+          <li class="dropdown-header">Sonoma County</li>
+            <li><a href="#">Sonoma</a></li>
+            <li><a href="#">Santa Rosa</a></li>
+        </ul>
+      </div>
       <br>
-    <label for="trip">City: </label><br>
-      <input type="text" name="tripOrigin" class="origin_city" placeholder="Enter city name">  
-      
-      <br>
-      <br>
+
     <label for="trip">Destination: </label><br>
-      <input type="text" name="tripDestination" class="trip_destination" placeholder="Enter trip destination address"> <br>
+      <input type="text" name="tripDestination" id="trip_destination" placeholder="Enter trip destination address"> <br>
       <br>
-      <label for="trip">City: </label><br>
-      <input type="text" name="tripOrigin" class="destination_city" placeholder="Enter city name">  
-      
-  <br>
-  <br>
-  <button type="submit" class="submit" href="#"> Submit </button>
-
-
-  
-<div id="driver_modal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title">
-          <strong> Enter the trip price: </strong>
-        </h2>
+      <div class="dropdown" id="city_destination">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select City
+        <!-- <span id="selected_origin">Select City</span>     -->
+        <span class="caret"></span></button>
+        <ul class="dropdown-menu" id="destination_dropdown">
+          <li class="dropdown-header">Alameda County</li>
+            <li><a href="#">Alameda</a></li>
+            <li><a href="#">Berkeley</a></li>
+            <li><a href="#">Oakland</a></li>
+            <li><a href="#">Hayward</a></li>
+          <li class="dropdown-header">Contra Costa County</li>
+            <li><a href="#">Richmond</a></li>
+            <li><a href="#">El Cerrito</a></li>
+          <li class="dropdown-header">Marin County</li>
+            <li><a href="#">San Rafael</a></li>
+            <li><a href="#">Sausalito</a></li>
+          <li class="dropdown-header">Napa County</li>
+            <li><a href="#">Napa</a></li>
+            <li><a href="#">American Canyon</a></li>
+          <li class="dropdown-header">San Francisco County</li>
+            <li><a href="#">San Francisco</a></li>
+          <li class="dropdown-header">San Mateo County</li>
+            <li><a href="#">Atherton</a></li>
+            <li><a href="#">Belmont</a></li>
+          <li class="dropdown-header">Santa Clara County</li>
+            <li><a href="#">Campbell</a></li>
+            <li><a href="#">Cupertino</a></li>
+          <li class="dropdown-header">Solano County</li>
+            <li><a href="#">Rio Vista</a></li>
+            <li><a href="#">Fairfield</a></li>
+          <li class="dropdown-header">Sonoma County</li>
+            <li><a href="#">Sonoma</a></li>
+            <li><a href="#">Santa Rosa</a></li>
+        </ul>
       </div>
-      <div class="modal-body">
-        <div class="driver_form_price">
-          <label for="tripPrice">Trip Price: </label><br>
-            <input type="number" min="0.00" step="0.01" name="tripPrice" placeholder="$"> 
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal"> Submit </button>
-      </div>
-    </div>
-  </div>
-</div>
-
+    <br>
+  <button type="search" id="submit">Search</button>
 </form>
+<script type="text/javascript">
+  //make sure that the selection is shown on dropdown 
+    
+  //get the value from the dropdown menu 
+    var destination;
+    var time;
+    var origin;
+
+    var db = require("./models")
+
+    $('#time_dropdown li a').on('click', function(){
+      time = $(this)[0].innerHTML;
+      console.log(time);
+    });
+    $('#destination_dropdown li a').on('click', function(){
+      destination = $(this)[0].innerHTML;
+      console.log(destination);
+    });
+    $('#origin_dropdown li a').on('click', function(){
+      origin = $(this)[0].innerHTML;
+      console.log(origin);   
+    });
+  //send that info to mysql on click of submit button
+  $("#submit").on("click", function(event){
+    event.preventDefault();
+    var newTrip = {
+      time: time,
+      originAddress: $("#trip_origin").val().trim(),
+      origin: origin,
+      destinationAddress: $("#trip_destination").val().trim(),
+      destination: destination
+    };
+    console.log(newTrip);
+    //create for driver
+      $.post("/create", newTrip)
+      .done(function(data) {
+        console.log(data, "You've posted the new trip!");
+        res.redirect("/auth/google");
+      });
+  });
+
+</script>

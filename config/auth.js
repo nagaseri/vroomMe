@@ -1,3 +1,4 @@
+console.log('auth.js is being called!')
 var path = require('path');
 
 var URL = "";

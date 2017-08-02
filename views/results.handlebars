@@ -1,7 +1,10 @@
 <h1 class="display-3">Search Results</h1>
 
 <div class="searching">
+<<<<<<< HEAD
   <
+=======
+>>>>>>> a6071b997c0f754d077d4a6157c2d1c2640ca1fe
 </div>
 
 <table class="table table-hover" id="results_table">
@@ -36,6 +39,7 @@
 
 <script type="text/javascript">
 //get information from mySQL db of trips with same origin and destination cities
+<<<<<<< HEAD
 $("#show").click(function(){
     $("p").show();
 });
@@ -45,6 +49,16 @@ $.done(function(response){
 });
 //send to goole api
   $.ajax({
+=======
+
+//TODO: fix ajax call
+/*$.done(function(response){
+    $("results_table").show();
+});*/
+
+//send to goole api
+  /*$.ajax({
+>>>>>>> a6071b997c0f754d077d4a6157c2d1c2640ca1fe
     url: queryURL,
     method: "GET"       
   })
@@ -61,6 +75,7 @@ $.done(function(response){
     var travelDistance = $("#travel-distance").text(response.routes[0].legs[0].distance.text);
       console.log(travelDistance)
     var travelTime = $("#travel-time").text(response.routes[0].legs[0].duration.text);
+<<<<<<< HEAD
       console.log(travelTime); 
     //<myGasFeed stuff NEW>
     var ajaxCBFunc = function (res){
@@ -83,4 +98,8 @@ $.done(function(response){
           setTimeout(ajaxCall, 1000);
         })
     }
+=======
+      console.log(travelTime); */
+    
+>>>>>>> a6071b997c0f754d077d4a6157c2d1c2640ca1fe
 </script>
