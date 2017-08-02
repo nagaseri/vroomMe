@@ -8,16 +8,12 @@ var env       = process.env.NODE_ENV || 'development';
 var config    = require(__dirname + '/../config/config.json')[env];
 var db        = {};
 
-console.log(`Process.env is`)
-console.log(process.env)
-
 if (config.use_env_variable) {
   var sequelize = new Sequelize(process.env[config.use_env_variable]);
+  console.log('Sequelize is on deployed machine')
 } else {
-  console.log(config.username)
-  console.log(config.password)
-
   var sequelize = new Sequelize(config.database, config.username, config.password, config);
+  console.log('Sequelize is on local machine')
 }
 fs
   .readdirSync(__dirname)

@@ -57,6 +57,5 @@ module.exports = function (app) {
   //     res.json(vroomMe);
   //   });
   // });  
-  // app.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'email']}));
   console.log('api-routes.js is loaded')
 }

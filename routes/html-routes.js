@@ -1,5 +1,4 @@
-var passport = require('passport');
-module.exports = function (router){
+module.exports = function (router, passport){
 
   //index page
   router.get("/", function (req, res) {
@@ -23,21 +22,22 @@ module.exports = function (router){
 
 
   //login page
-  // router.get('/profile', function (req, res, next) {
-  //   console.log('getting a GET request to show profile page!')
-  //   if(req.isAuthenticated()) return next();
-  //   res.redirect('/login');
-  // }, function(req, res){
-  //     res.render('profile', { user: req.body.user });
-  //   });
+  router.get('/profile', function (req, res, next) {
+    console.log('getting a GET request to show profile page!')
+    if(req.isAuthenticated()) return next();
+    res.redirect('/auth/google');
+  }, function(req, res){
+      res.render('profile', { user: req.body.user });
+    });
 
-  //authenticate logic
-  // router.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'email']}));
+  //authenticate page
+  router.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'email']}));
 
-  // router.get('/auth/google/callback', passport.authenticate('google', {
-  //   successRedirect: '/profile',
-  // 	failureRedirect: '/login' 
-  // }));
+  //after login, redirect 
+  router.get('/auth/google/callback', passport.authenticate('google', {
+    successRedirect: '/profile',
+  	failureRedirect: '/auth/google' 
+  }));
 
   //TODO: add log out page?  
   console.log('html-routes.js is loaded')

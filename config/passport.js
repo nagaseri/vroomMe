@@ -1,16 +1,20 @@
 console.log('passport is being called')
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
-var db = require('../app/models/');
+var db = require('../models/');
 var configAuth = require('./auth');
 
 module.exports = function(passport) {
 	passport.serializeUser(function(user, done){
-		done(null, user.id);
+		console.log('serializeUser is being called!')
+    console.log(`user is ${user}`)
+    done(null, user.id);
 	});
 
 	passport.deserializeUser(function(id, done){
-		db.Users.findById(id, function(err, user){
+    console.log('deserializeUser is being called!')
+    console.log(`id is ${id}`)
+		db.users.findOne({ where: {id: id} }, function(err, user){
 			done(err, user);
 		});
 	});
@@ -21,25 +25,30 @@ module.exports = function(passport) {
 	    callbackURL: configAuth.googleAuth.callbackURL
 	  },
 	  function(accessToken, refreshToken, profile, done) {
-      console.log('before finding a user')
 
-      db.Users.findOne({'userName': profile.id}, function(err, user){
-        if(err)
-          return done(err);
-        if(user)
-          return done(null, user);
-        else {
-          db.Users.create({
-            ///TODO: check table column
-            userName : profile.displayName,
-            // newUser.google.email : profile.emails[0].value;
-            // newUser.google.token : accessToken;
-          }).then(function(data){
-            console.log(profile);
-            return done(null, data);
-          })
-        }
-      });
+      process.nextTick(function(){
+        console.log('trying to find user')
+        db.users.findOne({where:{'userName': profile.displayName}}).then(function(user){
+          if(user){
+            console.log('user found!')
+            console.log(user);
+            return done(null, user);
+          }
+          else {
+            console.log('creating a new user');
+            db.Users.create({
+              ///TODO: check table column
+              'userName' : profile.displayName,
+              // newUser.google.email : profile.emails[0].value;
+              // newUser.google.token : accessToken;
+            }).then(function(data){
+              console.log('done creating a new user')
+              console.log(profile);
+              return done(null, data);
+            })
+          }
+        });
+      })
     }
 	));
 
