@@ -1,3 +1,5 @@
+var passportObj = require('../config/passport.js')
+
 module.exports = function (router, passport){
 
   //index page
@@ -27,7 +29,14 @@ module.exports = function (router, passport){
     if(req.isAuthenticated()) return next();
     res.redirect('/auth/google');
   }, function(req, res){
-      res.render('profile', { user: req.body.user });
+      console.log(passportObj.user)
+      res.render('profile', { 
+        // user: {
+        //   userName: "",
+        //   carModel: ""
+        // },
+        // trips: []
+      });
     });
 
   //authenticate page

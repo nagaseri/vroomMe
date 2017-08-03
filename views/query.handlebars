@@ -142,15 +142,35 @@
       var time;
       var origin;
 
-      // var db = require("./models")
+    $('#time_dropdown li a').on('click', function(){
+      time = $(this)[0].innerHTML;
+      console.log(time);
+    });
+    $('#destination_dropdown li a').on('click', function(){
+      destination = $(this)[0].innerHTML;
+      console.log(destination);
+    });
+    $('#origin_dropdown li a').on('click', function(){
+      origin = $(this)[0].innerHTML;
+      console.log(origin);   
+    });
+  //send that info to mysql on click of submit button
+  $("#submit").on("click", function(event){
+    event.preventDefault();
+    var newTrip = {
+      time: time,
+      originAddress: $("#trip_origin").val().trim(),
+      origin: origin,
+      destinationAddress: $("#trip_destination").val().trim(),
+      destination: destination
+    };
+    console.log(newTrip);
+    //create for driver
+      $.post("/create", newTrip)
 
-      $('#time_dropdown li a').on('click', function(){
-        time = $(this)[0].innerHTML;
-        console.log(time);
-      });
-      $('#destination_dropdown li a').on('click', function(){
-        destination = $(this)[0].innerHTML;
-        console.log(destination);
+      .done(function(data, res) {
+        console.log(data, "You've posted the new trip!");
+        res.redirect("/auth/google");
       });
       $('#origin_dropdown li a').on('click', function(){
         origin = $(this)[0].innerHTML;
