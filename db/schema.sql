@@ -23,8 +23,8 @@ CREATE TABLE trips (
   driverDestiCity varchar (255) NOT NULL,
   startTime DATETIME,
   price Int(11) DEFAULT 0,
-  createdAt datetime,
-  updatedAt datetime, 
+  createdAt timestamp DEFAULT current_timestamp,
+  updatedAt timestamp DEFAULT current_timestamp,
   PRIMARY KEY (id),
   FOREIGN KEY (driverId)
     REFERENCES users(id),

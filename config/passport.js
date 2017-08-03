@@ -1,5 +1,5 @@
 console.log('passport is being called')
-var colors = require('colors')
+var colors = require('colors/safe')
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 var db = require('../models/');
@@ -16,8 +16,12 @@ passport.func = function(passport) {
 
 	passport.deserializeUser(function(id, done){
     console.log(colors.red('deserializeUser is being called!'))
-		db.users.findOne({ where: {'userName': id} }).then( function(err, user){
-			done(err, user);
+		// console.log(`id is ${id}`)
+
+    db.users.findById(id).then(function(user){
+      // console.log('found user is')
+      // console.log(user)
+			done(null, user);
 		});
 	});
 
@@ -33,7 +37,7 @@ passport.func = function(passport) {
         db.users.findOne({where:{'userName': profile.displayName}}).then(function(user){
           if(user){
             console.log('user found!')
-            console.log(user);
+            // console.log(user);
             that.user = user
             return done(null, user);
           }

@@ -1,5 +1,15 @@
 var passportObj = require('../config/passport.js')
 
+function isLoggedIn(req, res, next) {
+    console.log('getting a GET request to show profile page!');
+    if (req.isAuthenticated()){
+      console.log('----user is logged in----')
+      return next();
+    }
+    console.log('----user is not logged in----')
+    res.redirect('/auth/google');
+}
+
 module.exports = function (router, passport){
 
   //index page
@@ -24,20 +34,16 @@ module.exports = function (router, passport){
 
 
   //login page
-  router.get('/profile', function (req, res, next) {
-    console.log('getting a GET request to show profile page!')
-    if(req.isAuthenticated()) return next();
-    res.redirect('/auth/google');
-  }, function(req, res){
-      console.log(passportObj.user)
-      res.render('profile', { 
-        // user: {
-        //   userName: "",
-        //   carModel: ""
-        // },
-        // trips: []
-      });
+  router.get('/profile', isLoggedIn, function(req, res){
+    console.log('rendering profile page')
+    res.render('profile', { 
+      // user: {
+      //   userName: "",
+      //   carModel: ""
+      // },
+      // trips: []
     });
+  });
 
   //authenticate page
   router.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'email']}));
