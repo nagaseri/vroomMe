@@ -1,45 +1,40 @@
-<h1 class="display-3">Search Results</h1>
-
-<div class="searching">
-<<<<<<< HEAD
-  <
-=======
->>>>>>> a6071b997c0f754d077d4a6157c2d1c2640ca1fe
+<div class="form" id="results_table">
+  <h1 class="display-3">Search Results</h1>
+    <div class="searching">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th><h3>Driver Name</h3></th>
+            <th><h3>Trip Time</h3></th>
+            <th><h3>Car Model</h3></th>
+            <th><h3>Trip Price</h3></th>
+            <th><h3>Origin</h3></th>
+            <th><h3>Destination</h3></th>
+            <th><h3>Select</h3></th>
+          </tr>
+        </thead>
+        <tbody>
+          <hr>
+          <tr>
+            <ul>
+              {{#each trips}}
+                  <td>{{this.driverName}}</td>
+                  <td>{{this.startTime}}</td>
+                  <td>{{this.carModel}}</td>
+                  <td>{{this.driverOrigin}}</td>
+                  <td>{{this.driverDestination}}</td>
+                  <td>{{this.tripPrice}}</td>
+                  <td><button type="submit" class="glyphicon glyphicon-plus"></button></td>
+              {{/each}}
+            </ul>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 </div>
-
-<table class="table table-hover" id="results_table">
-  <thead>
-    <tr>
-      <th><h3>Driver Name</h3></th>
-      <th><h3>Trip Time</h3></th>
-      <th><h3>Car Model</h3></th>
-      <th><h3>Trip Price</h3></th>
-      <th><h3>Origin</h3></th>
-      <th><h3>Destination</h3></th>
-      <th><h3>Select</h3></th>
-    </tr>
-  </thead>
-  <tbody>
-    <hr>
-    <tr>
-      <ul>
-        {{#each trips}}
-            <td>{{this.driverName}}</td>
-            <td>{{this.startTime}}</td>
-            <td>{{this.carModel}}</td>
-            <td>{{this.driverOrigin}}</td>
-            <td>{{this.driverDestination}}</td>
-            <td>{{this.tripPrice}}</td>
-            <td><button type="submit" class="glyphicon glyphicon-plus"></button></td>
-        {{/each}}
-      </ul>
-    </tr>
-  </tbody>
-</table>
 
 <script type="text/javascript">
 //get information from mySQL db of trips with same origin and destination cities
-<<<<<<< HEAD
 $("#show").click(function(){
     $("p").show();
 });
@@ -49,16 +44,6 @@ $.done(function(response){
 });
 //send to goole api
   $.ajax({
-=======
-
-//TODO: fix ajax call
-/*$.done(function(response){
-    $("results_table").show();
-});*/
-
-//send to goole api
-  /*$.ajax({
->>>>>>> a6071b997c0f754d077d4a6157c2d1c2640ca1fe
     url: queryURL,
     method: "GET"       
   })
@@ -75,7 +60,6 @@ $.done(function(response){
     var travelDistance = $("#travel-distance").text(response.routes[0].legs[0].distance.text);
       console.log(travelDistance)
     var travelTime = $("#travel-time").text(response.routes[0].legs[0].duration.text);
-<<<<<<< HEAD
       console.log(travelTime); 
     //<myGasFeed stuff NEW>
     var ajaxCBFunc = function (res){
@@ -98,8 +82,4 @@ $.done(function(response){
           setTimeout(ajaxCall, 1000);
         })
     }
-=======
-      console.log(travelTime); */
-    
->>>>>>> a6071b997c0f754d077d4a6157c2d1c2640ca1fe
 </script>

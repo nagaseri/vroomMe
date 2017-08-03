@@ -7,6 +7,18 @@ module.exports = function (app) {
     day = Object.keys(req.query)[0];
   })
 
+  app.get("/alltrips", function (req, res){
+    db.trips.findAll({}).then(function(data){
+      res.json(data);
+    })
+  })
+
+  app.get("/allusers", function (req, res){
+    db.users.findAll({}).then(function(data){
+      res.json(data);
+    })
+  })
+
   //TODO: check route 
   // app.get("/SQLresults", function(req, res) {
   //   console.log('getting a get request to show all SQL results')

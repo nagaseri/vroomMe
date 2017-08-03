@@ -8,16 +8,20 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	</head>
 	<body>
-	<div>
-      <nav class="navbar navbar-light">
-        <a class="navbar-brand" href="/">Vroom Me</a>
+	<div id='nav-div'>
+    <nav class="navbar">
+      <a class="navbar-brand" href="#">
+        <img src="img/Vroom_Me.png" width="80" height="80" alt="logo" id="logo" href="/">
         <div class="collapse navbar-collapse" id="navbarText">
           <button type="button" id="login_button" class="btn btn-link" href="/auth/google"><span class="navbar-text navbar-btn">
             Login</span>
           </button>
         </div>
-      </nav>
-    </div>
-		{{{ body }}}
+      </a>
+    </nav>
+  </div>
+
+	{{{ body }}}
+  
 	</body>
 </html>

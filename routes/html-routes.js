@@ -28,7 +28,7 @@ module.exports = function (router, passport){
 
   //query page 
   router.get("/query", function (req, res) {
-    
+    console.log('rendering query page')
     res.render("query", {layout: 'main'});
   });
 
