@@ -1,12 +1,34 @@
-<h1 class="display-3">Fill Out Your Driver Information</h1>
-<form class="driver_form" action="/" method="POST">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Vroom Me</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <a class="navbar-brand" href="#">
+        <img src="img/Vroom_Me.png" width="80" height="80" alt="logo" id="logo" href="/">
+        <div class="collapse navbar-collapse" id="navbarText">
+          <button type="button" id="login_button" class="btn btn-link" href="/auth/google"><span class="navbar-text navbar-btn">
+            Login</span>
+          </button>
+        </div>
+      </a>
+    </nav>
 
+<<<<<<< HEAD
   <div class="buttons">
     <button type="submit" class="rider_button" href="#">RIDE</button>
     <button type="submit" class="driver_button" href="#">DRIVE</button>
   </div>
  
 <form class="driver_form" action="/" method="POST">
+=======
+  <form class="driver_form" action="/" method="POST">
+>>>>>>> 37aee16ad94d4f72125db385d16c0af8fddcb1d5
     <div class="form">
       <h1>Fill Out Your Driver Information</h1>
       <br>
@@ -78,7 +100,11 @@
           <br>
 
         <label for="trip">Destination: </label><br>
+<<<<<<< HEAD
           <input type="text" name="tripDestination" id="trip_destination" placeholder="Enter trip destination address" size="35"> <br>
+=======
+          <input type="text" name="tripDestination" id="trip_destination" placeholder="Enter trip destination address"> <br>
+>>>>>>> 37aee16ad94d4f72125db385d16c0af8fddcb1d5
           <br>
           <div class="dropdown" id="city_destination">
             <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select City
@@ -157,6 +183,28 @@
         console.log(data, "You've posted the new trip!");
         res.redirect("/auth/google");
       });
-  });
+      $('#origin_dropdown li a').on('click', function(){
+        origin = $(this)[0].innerHTML;
+        console.log(origin);   
+      });
+    //send that info to mysql on click of submit button
+    $("#submit").on("click", function(event){
+      event.preventDefault();
+      var newTrip = {
+        time: time,
+        originAddress: $("#trip_origin").val().trim(),
+        origin: origin,
+        destinationAddress: $("#trip_destination").val().trim(),
+        destination: destination
+      };
+      console.log(newTrip);
+      //create for driver
+        // $.post("/create", newTrip)
+        // .done(function(data) {
+        //   console.log(data, "You've posted the new trip!");
+        // });
+    });
 
-</script>
+  </script>
+  </body>
+</html>
