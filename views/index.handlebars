@@ -51,13 +51,26 @@
     if (grayDays.indexOf(i) !== -1) {
       $(this).css({'background-color': 'gray'});
     }
+    var $that = $(this)
+    /*$.ajax({
+      method: 'GET',
+      url: '/dataForDays',
+      data: date
+    }).done(function(data){
+      console.log(data);
+      data.forEach(function(v){
+        $that.append(v)
+      })
+    })*/
   })
+
+  
 
   $('.days').on('click', function(){
     var date = $(this).attr('date');
     $.ajax({
       method: 'GET',
-      url: '/days',
+      url: '/day',
       data: date
     }).done(function(data){
       console.log(date + ' is sent to server!')

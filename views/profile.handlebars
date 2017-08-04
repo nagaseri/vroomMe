@@ -1,59 +1,55 @@
-<div class='container'>
-
-  <div class="container-fluid well span6">
-	  <div class="row-fluid">
-      <div class="span8">
-        <h3>User Name: <span id='userName'>{{user.userName}}</span></h3>
-        <h6>Car Model: <span id='carModel'>{{user.carModel}}</span></h6>
-        <br>
-        <div id='trips'>
-          <h3>Trips:</h3>
-            <table class="table table-hover" id="results_table">
-              <thead>
-                <tr>
-                  <th><h3>Origin</h3></th>
-                  <th><h3>Destination</h3></th>
-                  <th><h3>Driver Name</h3></th>
-                  <th><h3>Rider Name</h3></th>
-                  <th><h3>Trip Starting Time</h3></th>
-                  <th><h3>Car Model</h3></th>
-                  <th><h3>Trip Price</h3></th>
-                </tr>
-              </thead>
-              <tbody>
-                <hr>
-                <tr>
-                  <ul>
+<div class='container' id="profile">
+      <div class="container-fluid well span6">
+        <div class="row-fluid">
+          <div class="span8">
+            <h1 class="display-3">Profile Page</h1>
+            <h3>User Name: <span id='userName'>{{user.userName}}</span></h3>
+            <h4>Car Model: <span id='carModel'>{{user.carModel}}</span></h4>
+            <br>
+            <div id='trips'>
+              <h3>Trips:</h3>
+                <table class="table table-hover" id="profile_results">
+                  <thead>
+                    <tr>
+                      <th><h3>Origin</h3></th>
+                      <th><h3>Destination</h3></th>
+                      <th><h3>Driver Name</h3></th>
+                      <th><h3>Rider Name</h3></th>
+                      <th><h3>Trip Starting Time</h3></th>
+                      <th><h3>Trip Price</h3></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <hr>
                     {{#each trips}}
-                        <td>{{this.driverOrigin}}</td>
-                        <td>{{this.driverDestination}}</td>
-                        <td>{{this.driverName}}</td>
-                        <td>{{this.riderName}}</td>
-                        <td>{{this.startTime}}</td>
-                        <td>{{this.carModel}}</td>
-                        <td>{{this.tripPrice}}</td>
+                    <tr>
+                      <ul>
+                            <td>{{this.driverOrigin}}</td>
+                            <td>{{this.driverDestination}}</td>
+                            <td>{{this.driverName}}</td>
+                            <td>{{this.riderName}}</td>
+                            <td>{{this.startTime}}</td>
+                            <td>{{this.tripPrice}}</td>
+                      </ul>
+                    </tr>
                     {{/each}}
-                  </ul>
-                </tr>
-              </tbody>
-            </table>
-        </div>
-      </div>
-        
-      <div class="span2">
-        <div class="btn-group">
-          <a class="btn dropdown-toggle btn-info" data-toggle="dropdown" href="#">
-            Action 
-            <span class="icon-cog icon-white"></span><span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu">
-              <li><a href="#"><span class="icon-wrench"></span> Modify User</a></li>
-              <li><a href="#"><span class="icon-trash"></span> Delete User</a></li>
-          </ul>
+                  </tbody>
+                </table>
+            </div>
+          </div>
+            
+          {{!--<div class="span2">
+            <div class="btn-group">
+              <a class="btn dropdown-toggle btn-info" data-toggle="dropdown" href="#">
+                Action 
+                <span class="icon-cog icon-white"></span><span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                  <li><a href="#"><span class="icon-wrench"></span> Modify User</a></li>
+                  <li><a href="#"><span class="icon-trash"></span> Delete User</a></li>
+              </ul>
+            </div>
+          </div>--}}
         </div>
       </div>
     </div>
-  </div>
-</div>
-
-</div>

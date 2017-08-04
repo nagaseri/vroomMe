@@ -3,6 +3,9 @@ module.exports = function(sequelize, Sequelize) {
     userName: Sequelize.STRING,
     carModel: Sequelize.STRING
   });
+  
+  
+
   console.log('users.js is loaded')
   return User;
 }

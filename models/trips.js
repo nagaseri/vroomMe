@@ -8,6 +8,17 @@ module.exports = function(sequelize, DataTypes) {
     startTime: DataTypes.DATE,
     price: DataTypes.INTEGER
   });
+
+  Trip.associate = function (models){
+    Trip.belongsTo(models.users, {
+      foreignKey: 'riderId'
+    });
+    Trip.belongsTo(models.users, {
+      foreignKey: 'driverId'
+    })
+
+  }
+
   console.log('trips.js is loaded')
   return Trip;
 };

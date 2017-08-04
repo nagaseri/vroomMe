@@ -24,7 +24,7 @@
 }
 
 body{
-    background-image: url("car.jpeg");
+    background-image: url("../img/car.jpg");
     background-size: 100%;
     opacity: 0.9;
 }

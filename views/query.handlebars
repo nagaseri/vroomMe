@@ -120,15 +120,16 @@
   //make sure that the selection is shown on dropdown 
     
   //get the value from the dropdown menu 
-    var destination;
-    var time;
-    var origin;
+  var destination;
+  var time;
+  var origin;
 
   $('#time_dropdown li a').on('click', function(event){
     time = $(this)[0].inner.HTML;
     console.log(time);
     $(this).attr('selected');
   });
+
   $('#destination_dropdown li a').on('click', function(event){
     event.preventDefault();
     destination = $(this)[0].innerHTML;
@@ -141,28 +142,7 @@
     console.log(origin);
     $(this).attr('selected');   
   });
-//send that info to mysql on click of submit button
-$("#submit").on("click", function(event){
-  event.preventDefault();
-  var newTrip = {
-    time: time,
-    originAddress: $("#trip_origin").val().trim(),
-    origin: origin,
-    destinationAddress: $("#trip_destination").val().trim(),
-    destination: destination
-  };
-  console.log(newTrip);
-  //create for driver
-    $.post("/create", newTrip)
-
-    .done(function(data, res) {
-      console.log(data, "You've posted the new trip!");
-      res.redirect("/auth/google");
-    });
-    $('#origin_dropdown li a').on('click', function(){
-      origin = $(this)[0].innerHTML;
-      console.log(origin);   
-    });
+    
   //send that info to mysql on click of submit button
   $("#submit").on("click", function(event){
     event.preventDefault();
@@ -175,33 +155,12 @@ $("#submit").on("click", function(event){
     };
     console.log(newTrip);
   //create for driver
-    $.post("/create", newTrip)
-
-    .done(function(data, res) {
+    $.post("/create", newTrip).done(function(data, res) {
       console.log(data, "You've posted the new trip!");
       res.redirect("/auth/google");
     });
-    $('#origin_dropdown li a').on('click', function(){
-      origin = $(this)[0].innerHTML;
-      console.log(origin);   
-    });
-  //send that info to mysql on click of submit button
-  $("#submit").on("click", function(event){
-    event.preventDefault();
-    var newTrip = {
-      time: time,
-      originAddress: $("#trip_origin").val().trim(),
-      origin: origin,
-      destinationAddress: $("#trip_destination").val().trim(),
-      destination: destination
-    };
-    console.log(newTrip);
-    //create for driver
-      // $.post("/create", newTrip)
-      // .done(function(data) {
-      //   console.log(data, "You've posted the new trip!");
-      // });
-  });
+  })
+
 
 </script>
     
