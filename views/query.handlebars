@@ -6,24 +6,24 @@
     <br>
     <div class="driver_form_time">
       <label for="time">Desired Time of Departure: </label> <br>
-      <select required="required" autofocus="autofocus" class="departureTime">
-        <option selected="selected">Choose a time</option>
-        <option value="6">6:00am</option>
-        <option value="6">6:30am</option>
-        <option value="7">7:00am</option>
-        <option value="6">7:30am</option>
-        <option value="8">8:00am</option>
-        <option value="6">8:30am</option>
-        <option value="9">9:00am</option>
-        <option value="6">9:30am</option>
-        <option value="16">4:00pm</option>
-        <option value="6">4:30pm</option>
-        <option value="17">5:00pm</option>
-        <option value="6">5:30pm</option>
-        <option value="18">6:00pm</option>
-        <option value="6">6:30pm</option>
-        <option value="19">7:00pm</option>
-        <option value="6">7:30pm</option>
+      <select required="required" autofocus="autofocus" class="departureTime" id='time-select'>
+        <option selected="selected" >Choose a time</option>
+        <option value="6">06:00</option>
+        <option value="6">06:30</option>
+        <option value="7">07:00</option>
+        <option value="6">07:30</option>
+        <option value="8">08:00</option>
+        <option value="6">08:30</option>
+        <option value="9">09:00</option>
+        <option value="6">09:30</option>
+        <option value="16">16:00</option>
+        <option value="6">16:30</option>
+        <option value="17">17:00</option>
+        <option value="6">17:30</option>
+        <option value="18">18:00</option>
+        <option value="6">18:30</option>
+        <option value="19">19:00</option>
+        <option value="6">19:30</option>
       </select>
     </div>
     <br>
@@ -59,7 +59,7 @@
 
   //get departure time from dropdown
   $(".departureTime").change(function(res){
-      time = $('#start-time').find(":selected").text();
+      time = $('#time-select').find(":selected").text();
       console.log(time);
   });
 
@@ -74,8 +74,6 @@
       console.log("I'm a driver");
       //driver
       isRider = false;
-      //show modal 
-      $('#driver_modal').modal('show');
       //get price value
       $("#price_submit").on("click", function(event){
         price = $("#trip_price").val().trim();
