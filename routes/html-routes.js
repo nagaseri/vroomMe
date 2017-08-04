@@ -1,6 +1,7 @@
 var passportObj = require('../config/passport.js')
 var db = require('../models/')
 var apiObj = require('./api-routes.js')
+var colors = require('colors/safe')
 
 function isLoggedIn(req, res, next) {
     console.log('getting a GET request to show profile page!');
@@ -60,14 +61,23 @@ module.exports = function (router, passport){
         trips.push({
           driverOrigin:v.dataValues.driverOriginCity,
           driverDestination:v.dataValues.driverDestiCity,
-          //TODO: foreign key query
-          driverName: "",
-          riderName: "",
+          driverId: v.dataValues.driverId,
+          riderId: v.dataValues.riderId,
           startTime: v.dataValues.startTime,
           tripPrice: v.dataValues.price
         })
       })
-      res.render('profile', {'trips': trips});
+      db.users.findById(id).then(function(userData){
+        // console.log('userData is')
+        // console.log(userData)
+        res.render('profile', {
+          'trips': trips,
+          'user': {
+            'userName': userData.dataValues.userName,
+            'carModel': userData.dataValues.carModel,
+          }
+        });
+      })
     });
   })
 
@@ -88,9 +98,21 @@ module.exports = function (router, passport){
   }));
 
   //rider confirmation page
-  router.get('riderConfirmation', function(req, res){
+  router.get('/riderConfirmation', function(req, res){
     //TODO: pass price & car model
-    res.render('riderConfirmation', {})
+    db.users.findOne({
+      where: {
+        id: apiObj.data2.driverId
+      }
+    }).then(function(data){
+      console.log('found driver is');
+      console.log(colors.cyan(data))
+      apiObj.data2['foundDriver'] = data.userName;
+      
+      console.log(apiObj.data2)
+
+      res.render('riderConfirmation', {'match': apiObj.data2})
+    })
   })
 
   //driver confirmation page

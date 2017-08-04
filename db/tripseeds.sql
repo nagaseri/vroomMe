@@ -2,8 +2,8 @@
 INSERT INTO trips (riderId, driverId, driverOrigin, driverOriginCity, driverDestination, driverDestiCity, startTime) 
 VALUES 
  ((select id from users where userName = 'Chi Lu'),(select id from users where userName = 'Alex Ratliff'),'Coliseum, Oakland','Oakland','Ferry Building, San Francisco','San Francisco', '2017-08-04 15:00:00'),
- ((select id from users where userName = 'Anish Dabade'),(select id from users where userName = 'Eri Nagase'),'Coliseum, Oakland','Oakland','Ferry Building, San Francisco','San Francisco', '2017-08-04 15:00:00'),
- ((select id from users where userName = 'Eri Nagase'),(select id from users where userName = 'Alex Ratliff'),'Downtown Berkeley BART station, Berkeley','Berkeley','Fisherman\'s Wharf, San Francisco','San Francisco', '2017-08-04 15:00:00'),
+ ((select id from users where userName = 'Anish Dabade'),(select id from users where userName = 'Eri Nagase'),'Oracle Arena, Oakland','Oakland','Ferry Building, San Francisco','San Francisco', '2017-08-04 15:00:00'),
+ ((select id from users where userName = 'Eri Nagase'),(select id from users where userName = 'Alex Ratliff'),'Lake Merritt, Oakland','Oakland','Fisherman\'s Wharf, San Francisco','San Francisco', '2017-08-04 15:00:00'),
 
  ((select id from users where userName = 'Chi Lu'),(select id from users where userName = 'Alex Ratliff'),'Pier 15','San Francisco','The Campanile','Berkeley', '2017-08-05 23:00:00'),
  ((select id from users where userName = 'Anish Dabade'),(select id from users where userName = 'Eri Nagase'),'Pier 15','San Francisco','Coliseum BART station','Oakland', '2017-08-05 23:00:00'),

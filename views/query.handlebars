@@ -1,78 +1,61 @@
 <form class="driver_form" action="/" method="POST">
-  <div class="form" id="query_form">
+  <div class="form-group" id="query_form">
     <input type="checkbox" checked data-toggle="toggle" data-on="Rider" data-off="  Driver" data-onstyle="warning" data-offstyle="info" class="toggle_button">
     <h1>Fill Out Your Information</h1>
     <br>
     <br>
     <div class="driver_form_time">
       <label for="time">Desired Time of Departure: </label> <br>
-          <select required="required" autofocus="autofocus" class="departureTime" id='start-time'>
-            <option selected="selected">Choose a time</option>
-            <option value="6">06:00</option>
-            <option value="6">06:30</option>
-            <option value="7">07:00</option>
-            <option value="6">07:30</option>
-            <option value="8">08:00</option>
-            <option value="6">08:30</option>
-            <option value="9">09:00</option>
-            <option value="6">09:30</option>
-            <option value="16">16:00</option>
-            <option value="6">16:30</option>
-            <option value="17">17:00</option>
-            <option value="6">17:30</option>
-            <option value="18">18:00</option>
-            <option value="6">18:30</option>
-            <option value="19">19:00</option>
-            <option value="6">19:30</option>
-          </select>
-      </div>
-      <br>
+      <select required="required" autofocus="autofocus" class="departureTime">
+        <option selected="selected">Choose a time</option>
+        <option value="6">6:00am</option>
+        <option value="6">6:30am</option>
+        <option value="7">7:00am</option>
+        <option value="6">7:30am</option>
+        <option value="8">8:00am</option>
+        <option value="6">8:30am</option>
+        <option value="9">9:00am</option>
+        <option value="6">9:30am</option>
+        <option value="16">4:00pm</option>
+        <option value="6">4:30pm</option>
+        <option value="17">5:00pm</option>
+        <option value="6">5:30pm</option>
+        <option value="18">6:00pm</option>
+        <option value="6">6:30pm</option>
+        <option value="19">7:00pm</option>
+        <option value="6">7:30pm</option>
+      </select>
+    </div>
+    <br>
 
-      <div class="driver_form_addresses">
-        <label for="trip">Origin: </label><br>
-          <input type="text" name="tripOrigin" id="trip_origin" placeholder="Enter trip origin address" size="35"> <br>
-          <br> 
-          <br>
-        <label for="trip">Destination: </label><br>
-          <input type="text" name="tripDestination" id="trip_destination" placeholder="Enter trip destination address" size="35"> <br>
-          <br>
-          <br>
-        <button type="search" id="submit">Search</button>
-      </div>
-  </div>
-  <div id="driver_modal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2 class="modal-title">
-            <strong> Enter the trip price: </strong>
-          </h2>
-        </div>
-        <div class="modal-body">
-          <div class="driver_form_price">
-            <label for="tripPrice">Trip Price: </label>
-            <br>
-            <input type="number" min="0.00" step="0.01" id="trip_price" name="tripPrice" placeholder="$"> 
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" id="price_submit" data-dismiss="modal"> Submit </button>
-        </div>
-      </div>
+    <div class="driver_form_addresses">
+      <label for="trip">Origin: </label><br>
+        <input type="text" name="tripOrigin" id="trip_origin" placeholder="Enter trip origin address" size="35"> <br>
+        <br> 
+        <br>
+
+      <label for="trip">Destination: </label><br>
+        <input type="text" name="tripDestination" id="trip_destination" placeholder="Enter trip destination address" size="35"> <br>
+        <br>
+        <br>
+    <!-- driver price div     -->
+    <div class="form-group" id="driver_price">
+      <label for="price">Price:</label>
+      <input type="number" class="form-control" id="price" placeholder="$">
+    </div>
+
+      <button type="search" id="submit">Search</button>
     </div>
   </div>
-  <!-- loading pages -->
-  <!-- <div class="jumbotron text-xs-center loading" id="loading_database">
-    <h3 class="display-3">Contacting Database...</h3>
-  </div>
-  <div class="jumbotron text-xs-center loading" id="contacing_google">
-    <h3 class="display-3">Contacting Google...</h3>
-  </div> -->
+    
 </form>
 <script type="text/javascript">
   var time;
   var isRider = true;
   var price;
+
+   //hide driver div
+  $("#driver_price").hide();
 
   //get departure time from dropdown
   $(".departureTime").change(function(res){
@@ -82,22 +65,23 @@
 
   //determine whether or not the user is a driver
   $(".toggle_button").change(function(){
-      if($(this).prop("checked") == true){
-         console.log("I'm a rider");
-         //rider
-         isRider = true;
-      } else {
-         console.log("I'm a driver");
-         //driver
-         isRider = false;
-         //show modal 
-         $('#driver_modal').modal('show');
-         //get price value
-         $("#price_submit").on("click", function(event){
-            price = $("#trip_price").val().trim();
-            console.log(price);
-         });
-      }
+    $("#driver_price").toggle();
+    if($(this).prop("checked") == true){
+        console.log("I'm a rider");
+        //rider
+        isRider = true;
+    } else {
+      console.log("I'm a driver");
+      //driver
+      isRider = false;
+      //show modal 
+      $('#driver_modal').modal('show');
+      //get price value
+      $("#price_submit").on("click", function(event){
+        price = $("#trip_price").val().trim();
+        console.log(price);
+      });
+    }
   });
 
   $("#submit").on("click", function(event){

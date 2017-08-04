@@ -4,7 +4,18 @@
           <div class="span8">
             <h1 class="display-3">Profile Page</h1>
             <h3>User Name: <span id='userName'>{{user.userName}}</span></h3>
-            <h4>Car Model: <span id='carModel'>{{user.carModel}}</span></h4>
+            <h4>Car Model: 
+              <span id='carModel'>{{user.carModel}}</span>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <button type="submit" class="btn-info" id='update-car'>Update Car info</button>
+            </h4>
+            
+            <div class="form-group" id="car-input">
+              <label for="car">Car:</label>
+              <input type="text" class="form-control" id="car">
+              <button type="submit" id="new-car">Submit new car</button>
+            </div>
+
             <br>
             <div id='trips'>
               <h3>Trips:</h3>
@@ -13,24 +24,21 @@
                     <tr>
                       <th><h3>Origin</h3></th>
                       <th><h3>Destination</h3></th>
-                      <th><h3>Driver Name</h3></th>
-                      <th><h3>Rider Name</h3></th>
+                      <th><h3>Driver ID</h3></th>
+                      <th><h3>Rider ID</h3></th>
                       <th><h3>Trip Starting Time</h3></th>
                       <th><h3>Trip Price</h3></th>
                     </tr>
                   </thead>
                   <tbody>
-                    <hr>
                     {{#each trips}}
                     <tr>
-                      <ul>
-                            <td>{{this.driverOrigin}}</td>
-                            <td>{{this.driverDestination}}</td>
-                            <td>{{this.driverName}}</td>
-                            <td>{{this.riderName}}</td>
-                            <td>{{this.startTime}}</td>
-                            <td>{{this.tripPrice}}</td>
-                      </ul>
+                      <td>{{this.driverOrigin}}</td>
+                      <td>{{this.driverDestination}}</td>
+                      <td>{{this.driverId}}</td>
+                      <td>{{this.riderId}}</td>
+                      <td>{{this.startTime}}</td>
+                      <td>{{this.tripPrice}}</td>
                     </tr>
                     {{/each}}
                   </tbody>
@@ -53,3 +61,21 @@
         </div>
       </div>
     </div>
+    <script>
+      $('#car-input').hide();
+      $('#update-car').on('click', function(){
+        $('#car-input').show();
+      })
+
+      $('#new-car').on('click', function(){
+        $('#car-input').hide();
+        $.ajax({
+          method:'PUT',
+          url: '/newcar',
+          data: $('#car').val().trim()
+        }).done(function(){
+          console.log('done changing car!')
+          $('#carModel').text($('#car').val().trim())
+        })
+      })
+    </script>

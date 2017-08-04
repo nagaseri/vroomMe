@@ -1,53 +1,57 @@
 <div class="form" id="results_table">
   <h1 class="display-3">Search Results</h1>
     <div class="searching">
-      <table class="table table-hover">
+      <h3 id='loading-message'>Contacting Google Maps ... </h3>
+      <table class="table table-hover" id='results-table' style='display:none'>
         <thead>
           <tr>
-            <th><h3>Driver Name</h3></th>
+            <th><h3>Driver ID</h3></th>
             <th><h3>Trip Time</h3></th>
             <th><h3>Trip Price</h3></th>
             <th><h3>Origin</h3></th>
             <th><h3>Destination</h3></th>
-            <th><h3>Price</h3></th>
             <th><h3>Select</h3></th>
           </tr>
         </thead>
         <tbody>
           <hr>
           {{#each trips.driverTrips}}
-            <tr>
+            <tr id={{@index}}>
               <ul>
-                  <td>{{this.driverID}}</td>
+                  <td>{{this.driverId}}</td>
                   <td>{{this.startTime}}</td>
+                  <td>{{this.price}}</td>
                   <td class="driverAddress">{{this.driverOrigin}}</td>
                   <td>{{this.driverDestination}}</td>
-                  <td>{{this.tripPrice}}</td>
-                  <td><button type="submit" class="glyphicon glyphicon-plus"></button></td>
+                  <td><button type="submit" class="glyphicon glyphicon-thumbs-up" id={{@index}}></button></td>
               </ul>
             </tr>
           {{/each}}
         </tbody>
       </table>
     </div>
-    <div id='riderAddress' data={{this.riderAddress}}>{{this.riderAddress}}</div>
+    <div id='riderAddress' data={{trips.riderAddress}}>{{trips.riderAddress}}</div>
 </div>
 
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=geometry"></script>
+
+<script src="http://maps.google.com/maps/api/js?key=AIzaSyBQEV5K47We3yoawyYaQzngPtZ2l3KNniQ&libraries=geometry"></script>
+
 <script type="text/javascript">
 
   var counter = 0; 
   var driversArray = [];
-  var addr = $(".driverAddress").text();
-  driversArray.push(addr);
+  $(".driverAddress").each(function(v){
+    var addr = $(this).text();
+    driversArray.push(addr);
+  });
+  console.log(`driversArray length is ${driversArray.length}`)
   var latLngArray = [];
   var distanceArray = [];
-  //TODO: create mock data for riderAddress
-  var riderAddress = $('#riderAddress').attr('data');  
+  var riderAddress = $('#riderAddress').text();  
   var riderGeocoder = new google.maps.Geocoder();  
   //distance helper function 
   function calcDistance(p1, p2) {
-  return (google.maps.geometry.spherical.computeDistanceBetween(p1, p2) / 1000).toFixed(2);
+    return (google.maps.geometry.spherical.computeDistanceBetween(p1, p2) / 1000).toFixed(2);
   }
   //recursive geocoder function 
   var recursiveGeocoder = function(driverObj, riderObj){
@@ -57,7 +61,7 @@
       if (status == google.maps.GeocoderStatus.OK){
         console.log(results[0]);
         var add = results[0].address_components.length;
-        console.log(add);
+        //console.log(add);
           for(let i=0; i<results[0].address_components.length; i++) {
             if(results[0].address_components[i].types[0] == "locality") {
               console.log(results[0].address_components[i].long_name);
@@ -69,10 +73,13 @@
       }
       //recursive case
       if (counter < driversArray.length){
+        console.log('recurring again')
         recursiveGeocoder(driversArray[counter], riderObj)
       }
       //base case (all driver objects have been geocoded)
       else {
+        console.log('stopped recurring')
+        $('#loading-message').toggle();
         //calculate distances for each driver origin
         for (var i = 0; i< driversArray.length; i++){
           var driverPoint = new google.maps.LatLng(latLngArray[i].lat, latLngArray[i].lng);
@@ -80,9 +87,12 @@
           //now you have all the distances stored in distance Array, do a filter where distance[i] < 2 miles
           if(distanceArray[i] < 3.00) {
             console.log("Driver: " + i + " is " + distanceArray[i] + " miles away...!!!");
-          } 
+          } else {
+            console.log(`removing a trip that is ${distanceArray[i]} miles away`)
+            $('#'+i).remove();
+          }
         }
-        //TODO: POPULATE FRONT-END
+        $('#results-table').toggle();
       }
     })
   }
@@ -90,10 +100,21 @@
   console.log(`riderAddress is ${riderAddress}`)
   riderGeocoder.geocode({'address': riderAddress}, function(results, status){
     var riderLat = results[0].geometry.location.lat();
-    var riderLng = results[0].geometry.location.lng()
+    var riderLng = results[0].geometry.location.lng();
     riderPoint = new google.maps.LatLng(riderLat, riderLng);
     //recursive calls to populate latLngArray;  
     recursiveGeocoder(driversArray[counter], riderPoint);
+  })
+
+  $('button').on('click', function(){
+    $.ajax({
+      method: 'PUT',
+      url: '/match',
+      data: $(this).attr('id')
+    }).done(function(data){
+      $(location).attr('href', '/riderConfirmation')
+    })
+    
   })
  
 </script>
