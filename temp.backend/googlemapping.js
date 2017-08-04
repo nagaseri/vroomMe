@@ -1,113 +1,3 @@
-// // require jquery"https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"
-// var jquery = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js";
-// // Variable for driver input of origin and destination locations
-// var driverOrigin = "800 Madison St, Oakland, CA 94607";
-// var driverDestination = "496 San Francisco Bay Trail, San Francisco, CA 94105";
-
-// // Variable for driver input of starting and ending times of commute
-// var driverStartTime;
-// var driverEndTime;
-
-// // Variable for rider input of origin and destination locations
-// var riderOrigin = "1451 7th St, Oakland, CA 94607";
-// var riderDestination = "101 Market St, San Francisco, CA 94105";
-
-// // Variable for rider input of starting and ending times of commute
-// var riderStartTime;
-// var riderendTime;
-
-// // Variables for the Google Maps API
-// var cors = "https://cors-anywhere.herokuapp.com/";
-// //DRIVER origin coordinates
-// var coordLatDrvrOrg;
-// var coordLngDrvrOrg;
-// var coordinatesDrvrOrg;
-// //RIDER origin coordinates
-// var coordLatRiderOrg;
-// var coordLngRiderOrg;
-// var coordinatesRiderOrg;
-// // DRIVER destination coordinates
-// var coordLatDrvrDest;
-// var coordLngDrvrDest;
-// var coordinatesDrvrDest;
-// // RIDER destination coordinates
-// var coordLatRiderDest;
-// var coordLngRiderDest;
-// var coordinatesRiderDest;
-
-// var queryURL;
-
-// //initializing google Map variables
-// var placeSearch, autocomplete;
-// var componentForm = {
-//   street_number: 'short_name',
-//   route: 'long_name',
-//   locality: 'long_name',
-//   administrative_area_level_1: 'short_name',
-//   country: 'long_name',
-//   postal_code: 'short_name'
-// };
-// var endCoordLat = ""; 
-// var endCoordLng = ""; 
-// var startCoordLat = ""; 
-// var startCoordLng = ""; 
-// var directionsService;
-// var directionsDisplay;
-// var directionDisplay2; 
-
-
-//     console.log("Driver origin: ", driverOrigin);
-//     console.log("Driver destination: ", driverDestination); 
-//     console.log("Rider origin: ", riderOrigin);
-//     console.log("Rider destination: ", riderDestination); 
-//     var cors = "https://cors-anywhere.herokuapp.com/"
-//     var queryDriverURL = cors + "https://maps.googleapis.com/maps/api/directions/json?origin=" + driverOrigin + "&destination=" + driverDestination + "&key=AIzaSyA3zxPOYEjaZFkWhGi4WRjUVWXXXF7GRUA"
-//       console.log(queryDriverURL); 
-
-//     var queryRiderURL = cors + "https://maps.googleapis.com/maps/api/directions/json?origin=" + riderOrigin + "&destination=" + riderDestination + "&mode=transit&key=AIzaSyA3zxPOYEjaZFkWhGi4WRjUVWXXXF7GRUA"
-//       console.log(queryDriverURL);
-  
-//   // Get the coordinates for driver
-//   function getDriverTrip(drive) { 
-//     $.ajax({
-//         url: queryDriverURL,
-//         method: "GET"       
-//       })
-//       .done(function(response) {
-//         endCoordLat = response.routes[0].legs[0].end_location.lat;
-//           console.log(endCoordLat); 
-//         endCoordLng = response.routes[0].legs[0].end_location.lng;
-//           console.log(endCoordLng); 
-//         startCoordLat = response.routes[0].legs[0].start_location.lat;
-//           console.log(startCoordLat); 
-//         startCoordLng = response.routes[0].legs[0].start_location.lng;
-//           console.log(startCoordLng);  
-//       });
-//       return drive();
-//     };
-
-//     // Get the coordinates for rider
-//     function getRiderTrip() {
-      
-//       $.ajax({
-//         url: queryDriverURL,
-//         method: "GET"       
-//       })
-//       .done(function(response) {
-//         endCoordLat = response.routes[0].legs[0].end_location.lat;
-//           console.log(endCoordLat); 
-//         endCoordLng = response.routes[0].legs[0].end_location.lng;
-//           console.log(endCoordLng); 
-//         startCoordLat = response.routes[0].legs[0].start_location.lat;
-//           console.log(startCoordLat); 
-//         startCoordLng = response.routes[0].legs[0].start_location.lng;
-//           console.log(startCoordLng);
-//       });
-//     };
-
-//     getDriverTrip();
-//     getRiderTrip();
-
 var counter = 0; 
 
 var driversArray =["1001 Potrero Ave, San Francisco, CA 94110","375 11th St, San Francisco, CA 94103","647 Valencia St, San Francisco, CA 94110","Lombard St, San Francisco, CA 94133","3140 Mission St, San Francisco, CA 94110","1293 E 1st Ave, Chico, CA 95926","664 E 1st Ave, Chico, CA 95926","5121 Eastham ct. Dublin, CA 94568"];
@@ -118,6 +8,17 @@ var distanceArray = [];
 var riderAddress = '3286 22nd St, San Francisco, CA 94110';
 
 var riderGeocoder = new google.maps.Geocoder();  
+
+function initAutocomplete() {
+  // Create the autocomplete object, restricting the search to geographical
+  // location types.
+  autocomplete = new google.maps.places.Autocomplete(
+      /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+      {types: ['geocode']});
+  autocomplete = new google.maps.places.Autocomplete(
+      /** @type {!HTMLInputElement} */(document.getElementById('autocomplete-2')),
+      {types: ['geocode']});
+}
 
 
 //distance helper function 
@@ -159,11 +60,8 @@ var recursiveGeocoder = function(driverObj, riderObj){
 
         if(distanceArray[i] < 3.00) {
           console.log("Driver: " + i + " is " + distanceArray[i] + " miles away...!!!");
-        } 
-        
+        }  
       }
-      
-    
     }
   })
 }

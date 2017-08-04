@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=geometry&key=AIzaSyAq4t_2XufS7rd1A_yyhloYwfrLwX6sTBo"></script>
+</head>
+<body>
+
+<script type="text/javascript">
+  
+// Variable for driver input of origin and destination locations
+var driverOrigin = "800 Madison St, Oakland, CA 94607";
+var driverDestination = "496 San Francisco Bay Trail, San Francisco, CA 94105";
+// Variable for driver input of starting and ending times of commute
+var driverStartTime;
+var driverEndTime;
+// Variable for rider input of origin and destination locations
+var riderOrigin = "1451 7th St, Oakland, CA 94607";
+var riderDestination = "101 Market St, San Francisco, CA 94105";
+// Variable for rider input of starting and ending times of commute
+var riderStartTime;
+var riderendTime;
+// Variables for the Google Maps API
+var cors = "https://cors-anywhere.herokuapp.com/";
+//DRIVER origin coordinates
+var coordLatDrvrOrg;
+var coordLngDrvrOrg;
+var coordinatesDrvrOrg;
+//RIDER origin coordinates
+var coordLatRiderOrg;
+var coordLngRiderOrg;
+var coordinatesRiderOrg;
+// DRIVER destination coordinates
+var coordLatDrvrDest;
+var coordLngDrvrDest;
+var coordinatesDrvrDest;
+// RIDER destination coordinates
+var coordLatRiderDest;
+var coordLngRiderDest;
+var coordinatesRiderDest;
+var queryURL;
+//initializing google Map variables
+var placeSearch, autocomplete;
+var componentForm = {
+  street_number: 'short_name',
+  route: 'long_name',
+  locality: 'long_name',
+  administrative_area_level_1: 'short_name',
+  country: 'long_name',
+  postal_code: 'short_name'
+};
+var endCoordLat = ""; 
+var endCoordLng = ""; 
+var startCoordLat = ""; 
+var startCoordLng = ""; 
+var directionsService;
+var directionsDisplay;
+var directionDisplay2; 
+    console.log("Driver origin: ", driverOrigin);
+    console.log("Driver destination: ", driverDestination); 
+    console.log("Rider origin: ", riderOrigin);
+    console.log("Rider destination: ", riderDestination); 
+    var cors = "https://cors-anywhere.herokuapp.com/"
+    var queryDriverURL = cors + "https://maps.googleapis.com/maps/api/directions/json?origin=" + driverOrigin + "&destination=" + driverDestination + "&key=AIzaSyAq4t_2XufS7rd1A_yyhloYwfrLwX6sTBo"
+      console.log(queryDriverURL); 
+    var queryRiderURL = cors + "https://maps.googleapis.com/maps/api/directions/json?origin=" + riderOrigin + "&destination=" + riderDestination + "&key=AIzaSyAq4t_2XufS7rd1A_yyhloYwfrLwX6sTBo"
+      console.log(queryDriverURL);
+  
+  // Get the coordinates for driver
+  function getTrip(drive) { 
+    console.log("We've gotten to the getTrip function....");
+    $.ajax({
+        url: queryDriverURL,
+        method: "GET"       
+      })
+      .done(function(response) {
+        coordLatDrvrOrg = response.routes[0].legs[0].end_location.lat;
+          console.log("Ending lat coords.. ",coordLatDrvrOrg); 
+        coordLngDrvrOrg = response.routes[0].legs[0].end_location.lng;
+          console.log("Ending long coords.. ", coordLngDrvrOrg); 
+        coordLatRiderOrg = response.routes[0].legs[0].start_location.lat;
+          console.log("Starting lat coords.. ", coordLatRiderOrg); 
+        coordLngRiderOrg = response.routes[0].legs[0].start_location.lng;
+          console.log("Starting long coords.. ", coordLngRiderOrg);  
+
+        var p1 = new google.maps.LatLng(coordLatDrvrOrg, coordLngDrvrOrg);
+        var p2 = new google.maps.LatLng(coordLatRiderOrg, coordLngRiderOrg);
+
+        alert(calcDistance(p1, p2));
+
+        //calculates distance between two points in km's
+        function calcDistance(p1, p2) {
+          return ((p1, p2) / 1000)
+        };
+
+      });
+      return drive;
+    };
+    // Get the coordinates for rider
+    function getRide(ride) {
+      console.log("We've gotten to the getRide function....");
+      $.ajax({
+        url: queryRiderURL,
+        method: "GET"       
+      })
+      .done(function(response) {
+        endCoordLat = response.routes[0].legs[0].end_location.lat;
+          console.log("Ending lat coords.. ",endCoordLat); 
+        endCoordLng = response.routes[0].legs[0].end_location.lng;
+          console.log("Ending long coords.. ",endCoordLng); 
+        startCoordLat = response.routes[0].legs[0].start_location.lat;
+          console.log("Starting lat coords.. ",startCoordLat); 
+        startCoordLng = response.routes[0].legs[0].start_location.lng;
+          console.log("Starting long coords.. ",startCoordLng);
+      });
+      return ride;
+    };
+
+    getTrip();
+    getRide();
+
+</script>
+</body>
+</html>
