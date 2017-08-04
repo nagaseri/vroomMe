@@ -54,7 +54,7 @@ module.exports = function (router, passport){
       }
     }).then(function(data){
       console.log('==============================')
-      console.log(data)
+      // console.log(data)
       var trips = []; 
       data.forEach(function(v){
         trips.push({
@@ -73,7 +73,9 @@ module.exports = function (router, passport){
 
   router.get('/results', function(req, res){
     console.log('rendering results page')
-    res.render('results', {'trips': apiObj.data})
+    // console.log('apiObj.data in html is')
+    // console.log(apiObj.data1)
+    res.render('results', {'trips': apiObj.data1})
   })
 
   //authenticate page

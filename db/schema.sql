@@ -33,6 +33,9 @@ CREATE TABLE trips (
     ON UPDATE CASCADE
 );
 
+SET time_zone='-07:00';
+
+
 INSERT INTO users (userName, carModel) VALUES ('Alex Ratliff', '2004 Honda Accord');
 INSERT INTO users (userName, carModel) VALUES ('Chi Lu', '');
 INSERT INTO users (userName, carModel) VALUES ('Anish Dabade', '');

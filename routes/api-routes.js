@@ -38,8 +38,8 @@ api.func = function (app, passport) {
     console.log(`detailDay is ${detailDay}`)
     db.trips.findAll({
       where: {
-        driverDestination:  req.query.destinationAddress,
         driverOrigin: req.query.originAddress,
+        driverDestination:  req.query.destinationAddress,
         startTime: detailDay
       }
     }).then(function(driverTrip) {
@@ -47,7 +47,9 @@ api.func = function (app, passport) {
         var finalData = {}; 
         finalData['riderAddress'] = riderOrigin;
         finalData['driverTrips'] = driverTrip;
-        that.data = finalData;  
+        api.data1 = finalData;  
+        // console.log('apiObj.data in api is')
+        // console.log(api.data1.driverTrips)
         res.end();
       })
     });
@@ -75,6 +77,6 @@ api.func = function (app, passport) {
   console.log('api-routes.js is loaded')
 }
 
-api.data = {}
+api.data1 = {}
 
 module.exports = api;  
