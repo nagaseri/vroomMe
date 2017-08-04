@@ -1,0 +1,24 @@
+{
+  "development": {
+    "username": "root",
+    "password": "Balancer06",
+    "database": "vroomme_db",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "use_env_variable": "JAWSDB_URL",
+    "username": "lrswt41tf6o0fcyx",
+    "password": "jd4qhbudlqn7qt7v",
+    "database": "vroomme_db",
+    "host": "op2hpcwcbxb1t4z9.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    "dialect": "mysql"
+  }
+}

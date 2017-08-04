@@ -1,0 +1,251 @@
+#login_button{
+  right: 0;
+  top: 0;
+  position: absolute;
+}
+
+.navbar{
+    background-color: white;
+    opacity: 0.8;
+    height: 100px;
+}
+
+#query_form{
+    background-color: white;
+    opacity: 1;
+    font-family: 'Open Sans', sans-serif;
+    padding: 30px 0;
+    text-align: center;
+    width: 60%;
+    align-content: center;
+    margin-left: 20%;
+    margin-bottom: 5%;
+    margin-top: 5%;
+}
+
+#price {
+  width: 20%;
+  display: inline-block
+}
+
+.loading{
+  text-align: center;
+  width: 60%;
+  margin-left: 240px;
+}
+
+#results_table{
+    background-color: white;
+    opacity: 1;
+    font-family: 'Open Sans', sans-serif;
+    padding: 30px 60px;
+    text-align: center;
+    width: 80%;
+    align-content: center;
+    margin-left: 10%;
+    margin-bottom: 5%;
+    margin-top: 5%;
+    display: inline-block;
+}
+
+#rider_confirmation{
+  text-align: center;
+  width: 60%;
+  margin-left: 20%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+#driver_confirmation{
+  text-align: center;
+  width: 60%;
+  margin-left: 20%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+#profile{
+    background-color: white;
+    opacity: 1;
+    font-family: 'Open Sans', sans-serif;
+    padding: 30px;
+    text-align: center;
+    width: 80%;
+    align-content: center;
+    margin-left: 10%;
+    margin-bottom: 3%;
+    margin-top: 3%;
+}
+
+#trips{
+  display: inline-block;
+}
+
+body{
+    background-image: url("../img/car.jpg");
+    background-size: 100%;
+    opacity: 0.9;
+}
+
+li{
+    display: inline-block;
+}
+
+.trip_origin{
+     text-align: justify;
+     width: 40%;
+}
+
+.trip_destination{
+     text-align: justify;
+     width: 40%;
+}
+
+h5 {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%); 
+}
+
+h6 {
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  transform: translate(-50%, -80%);
+}
+
+a {
+  color: black;
+  text-decoration: none; /* no underline */
+}
+
+.container {
+  min-height: 90vh;
+}
+
+
+.day-wrap {
+  height: 40vh
+}
+.days {
+  cursor: pointer;
+  position: relative;
+  -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    width: 100%;
+    max-width: 40vh;
+    min-height: 120px;
+    max-height: 100%;
+    background-color: lightblue;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.5), inset 2px 2px 4px rgba(0,0,0,.5);
+    -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), inset 2px 2px 4px rgba(0,0,0,.5);  
+    -moz-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), inset 2px 2px 4px rgba(0,0,0,.5);
+}
+
+#rowOne, #rowTwo {
+  height: 40vh;
+}
+#header{
+  height:10vh;
+  border-bottom: 2px solid black;
+}
+
+#circles{
+  margin-top: 5vh;
+}
+
+#driver_button{
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.card {
+    background-color: #F7F7F7;
+    /* just in case there no content*/
+    padding: 20px 25px 30px;
+    margin: 0 auto 25px;
+    margin-top: 50px;
+    /* shadows and rounded borders */
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.profile-img-card {
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 10px;
+    display: block;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.profile-name-card {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    margin: 10px 0 0;
+    min-height: 1em;
+}
+
+.reauth-email {
+    display: block;
+    color: #404040;
+    line-height: 2;
+    margin-bottom: 10px;
+    font-size: 14px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#right-panel {
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
+
+      #right-panel select, #right-panel input {
+        font-size: 15px;
+      }
+
+      #right-panel select {
+        width: 100%;
+      }
+
+      #right-panel i {
+        font-size: 12px;
+      }
+      
+      #map {
+        height: 100%;
+        float: left;
+        width: 70%;
+        height: 100%;
+      }
+      #right-panel {
+        margin: 20px;
+        border-width: 2px;
+        width: 20%;
+        height: 400px;
+        float: bottom;
+        text-align: left;
+        padding-top: 0;
+      }
+      #directions-panel {
+        margin-top: 10px;
+        background-color: #FFEE77;
+        padding: 10px;
+        overflow: scroll;
+        height: 174px;
+      }

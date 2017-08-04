@@ -1,0 +1,118 @@
+<form class="driver_form" action="/" method="POST">
+  <div class="form-group" id="query_form">
+    <input type="checkbox" checked data-toggle="toggle" data-on="Rider" data-off="  Driver" data-onstyle="warning" data-offstyle="info" class="toggle_button">
+    <h1>Fill Out Your Information</h1>
+    <br>
+    <br>
+    <div class="driver_form_time">
+      <label for="time">Desired Time of Departure: </label> <br>
+      <select required="required" autofocus="autofocus" class="departureTime">
+        <option selected="selected">Choose a time</option>
+        <option value="6">6:00am</option>
+        <option value="6">6:30am</option>
+        <option value="7">7:00am</option>
+        <option value="6">7:30am</option>
+        <option value="8">8:00am</option>
+        <option value="6">8:30am</option>
+        <option value="9">9:00am</option>
+        <option value="6">9:30am</option>
+        <option value="16">4:00pm</option>
+        <option value="6">4:30pm</option>
+        <option value="17">5:00pm</option>
+        <option value="6">5:30pm</option>
+        <option value="18">6:00pm</option>
+        <option value="6">6:30pm</option>
+        <option value="19">7:00pm</option>
+        <option value="6">7:30pm</option>
+      </select>
+    </div>
+    <br>
+
+    <div class="driver_form_addresses">
+      <label for="trip">Origin: </label><br>
+        <input type="text" name="tripOrigin" id="trip_origin" placeholder="Enter trip origin address" size="35"> <br>
+        <br> 
+        <br>
+
+      <label for="trip">Destination: </label><br>
+        <input type="text" name="tripDestination" id="trip_destination" placeholder="Enter trip destination address" size="35"> <br>
+        <br>
+        <br>
+    <!-- driver price div     -->
+    <div class="form-group" id="driver_price">
+      <label for="price">Price:</label>
+      <input type="number" class="form-control" id="price" placeholder="$">
+    </div>
+
+      <button type="search" id="submit">Search</button>
+    </div>
+  </div>
+    
+</form>
+<script type="text/javascript">
+  var time;
+  var isRider = true;
+  var price;
+
+   //hide driver div
+  $("#driver_price").hide();
+
+  //get departure time from dropdown
+  $(".departureTime").change(function(res){
+      time = $('#start-time').find(":selected").text();
+      console.log(time);
+  });
+
+  //determine whether or not the user is a driver
+  $(".toggle_button").change(function(){
+    $("#driver_price").toggle();
+    if($(this).prop("checked") == true){
+        console.log("I'm a rider");
+        //rider
+        isRider = true;
+    } else {
+      console.log("I'm a driver");
+      //driver
+      isRider = false;
+      //show modal 
+      $('#driver_modal').modal('show');
+      //get price value
+      $("#price_submit").on("click", function(event){
+        price = $("#trip_price").val().trim();
+        console.log(price);
+      });
+    }
+  });
+
+  $("#submit").on("click", function(event){
+    event.preventDefault();
+    var newTrip = {
+      time: time,
+      originAddress: $("#trip_origin").val().trim(),
+      destinationAddress: $("#trip_destination").val().trim(),
+      price: price
+    };
+    console.log(newTrip);
+    if(isRider === true){
+      $.ajax({
+        url: '/SQLresults',
+        method: 'get',
+        data: newTrip
+      }).done(function(data){
+        console.log(data, "Searching for rides");
+        $(location).attr('href', '/results')
+      })
+    }
+    else{
+      $.ajax({
+        url: '/create',
+        method:'POST',
+        data: newTrip
+      }).done(function(data, res) {
+        console.log(data, "You've posted the new trip!");
+        $(location).attr('href', '/driverConfirmation')
+      });
+    }
+  });
+</script>
+    

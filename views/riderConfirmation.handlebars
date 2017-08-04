@@ -1,0 +1,69 @@
+<div class='row'>  
+  <div class="col-xs-6 center-block" id="confirmation">
+    <h1 class="display-3">Confirmation</h1>
+    <p class="lead"><strong>Your trip details:</strong></p>
+    <p>Your driver is {{match.foundDriver}}</p>
+    <p>Your trip will occur at {{match.startTime}}</p>
+    <p>Your trip is ${{match.price}}</p>
+    <p>Your trip distance is<span id='directions-panel'></span></p>
+    <hr>
+    <div style='display:none'>
+      <p id='driver-origin'>{{match.driverOrigin}}</p>
+      <p id='rider-origin'>{{match.riderOrigin}}</p>
+      <p id='rider-dest'>{{match.riderDest}}</p>
+      
+    </div>
+    <p class="lead">
+      <a class="btn btn-primary btn-sm" href="/" role="button">Return to your profile</a>
+    </p>
+  </div>
+  <div id="map" style="height:70vh" class='col-xs-6'></div>
+</div>
+  
+<script>
+  function initMap() {
+    var directionsService = new google.maps.DirectionsService;
+    var directionsDisplay = new google.maps.DirectionsRenderer;
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 2,
+      center: {lat: 41.85, lng: -87.65}
+    });
+    directionsDisplay.setMap(map);
+
+    $( document ).ready(function() {
+      calculateAndDisplayRoute(directionsService, directionsDisplay);
+    });      
+  }
+
+  function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+    var waypt = [{
+      location: $('#rider-origin').text(),
+      stopover: true
+    }]
+
+    directionsService.route({
+      //UPDATE
+      origin: $('#driver-origin').text(),
+      destination: $('#rider-dest').text(),
+      waypoints: waypt,
+      optimizeWaypoints: true,
+      travelMode: 'DRIVING'
+    }, function(response, status) {
+      if (status === 'OK') {
+        directionsDisplay.setDirections(response);
+        var route = response.routes[0];
+        var summaryPanel = document.getElementById('directions-panel');
+        summaryPanel.innerHTML = '';
+        for (var i = 0; i < route.legs.length; i++) {
+          var routeSegment = i + 1;
+          summaryPanel.innerHTML += '<b>Route Distance: ' + route.legs[i].distance.text;
+        }
+      } else {
+        window.alert('Directions request failed due to ' + status);
+      }
+    });
+  }
+</script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQEV5K47We3yoawyYaQzngPtZ2l3KNniQ&callback=initMap">
+</script>
