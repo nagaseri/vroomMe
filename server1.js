@@ -30,7 +30,7 @@ app.use(passport.session()); // persistent login sessions
 // app.use(methodOverride("_method"));
 //server logic
 require("./routes/html-routes.js")(app, passport);
-require("./routes/api-routes.js")(app);
+require("./routes/api-routes.js").func(app, passport);
 
 //data base
 var db = require('./models');

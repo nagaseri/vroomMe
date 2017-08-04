@@ -1,11 +1,15 @@
 var day = ''; 
-var db = require('../models/')
+var passportObj = require('../config/passport.js');
+var db = require('../models/');
+var api ={};
 
-module.exports = function (app) {
+api.func = function (app, passport) {
 
   app.get("/day", function (req, res) {
     console.log("You clicked on " + Object.keys(req.query)[0])
+    
     day = Object.keys(req.query)[0];
+    day = day.slice(0, day.indexOf('T'));
   })
 
   app.get("/alltrips", function (req, res){
@@ -20,33 +24,57 @@ module.exports = function (app) {
     })
   })
 
-
-  //TODO: check route 
+  //for riders
   app.get("/SQLresults", function(req, res) {
+    var that = this;
     console.log('getting a get request to show all SQL results')
+    // console.log(req.user)
+    // console.log(req)
+    // console.log('===============')
+    // console.log(req.query)
+    var id = req.user.dataValues.id;
+    var riderOrigin = req.query.originAddress;  
+    var detailDay = day + " " + req.query.time
+    console.log(`detailDay is ${detailDay}`)
     db.trips.findAll({
-      //TODO: check with front end
-      driverDestnation:  req.data.destination,
-      driverOrigin: req.data.origin,
-      startTime: req.data.time
-    }).then(function(vroomMe) {
-      res.json(vroomMe);
+      where: {
+        driverDestination:  req.query.destinationAddress,
+        driverOrigin: req.query.originAddress,
+        startTime: detailDay
+      }
+    }).then(function(driverTrip) {
+      db.users.findById(id).then(function(riderTrip){
+        var finalData = {}; 
+        finalData['riderAddress'] = riderOrigin;
+        finalData['driverTrips'] = driverTrip;
+        that.data = finalData;  
+        res.end();
+      })
     });
   });
 
+  
+
   app.post("/create", function(req, res) {
+    console.log('getting a post request to create a new trip')
+    var id = req.user.dataValues.id;
+    var detailDay = day + " " + startTime
     db.trips.create({
-      //TODO: update item to put in driver Name
-      driverDestnation:  req.data.destination,
-      driverOrigin: req.data.origin,
-      startTime: req.data.time
-    }).then(function(vroomMe) {
-    //SAVE THIS TRIP somewhere
-    //REMEMBER that user is a driver
-      res.redirect("/auth/google");
+      driverDestnation:  req.body.destinationAddress,
+      driverOrigin: req.body.originAddress,
+      price: req.body.price,
+      driverId: id,
+      startTime: detailDay + " " + req.query.time +':00'
+    }).then(function(data) {
+      console.log(data)
+      res.redirect("/driverConfirmation");
     });
   });
 
 
   console.log('api-routes.js is loaded')
 }
+
+api.data = {}
+
+module.exports = api;  

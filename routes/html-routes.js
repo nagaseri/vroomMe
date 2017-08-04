@@ -1,5 +1,6 @@
 var passportObj = require('../config/passport.js')
 var db = require('../models/')
+var apiObj = require('./api-routes.js')
 
 function isLoggedIn(req, res, next) {
     console.log('getting a GET request to show profile page!');
@@ -13,8 +14,11 @@ function isLoggedIn(req, res, next) {
 
 module.exports = function (router, passport){
 
+  router.get('/', function(req, res){
+    res.redirect('/auth/google');
+  })
   //index page
-  router.get("/", function (req, res) {
+  router.get("/index", function (req, res) {
     console.log('rendering index page') 
     var daysOfWeek = {
       days:[
@@ -25,6 +29,7 @@ module.exports = function (router, passport){
         {day:"F", rowOne: false}
       ]
     }; 
+    
     res.render("index", daysOfWeek);
   });
 
@@ -55,6 +60,7 @@ module.exports = function (router, passport){
         trips.push({
           driverOrigin:v.dataValues.driverOriginCity,
           driverDestination:v.dataValues.driverDestiCity,
+          //TODO: foreign key query
           driverName: "",
           riderName: "",
           startTime: v.dataValues.startTime,
@@ -65,14 +71,30 @@ module.exports = function (router, passport){
     });
   })
 
+  router.get('/results', function(req, res){
+    console.log('rendering results page')
+    res.render('results', {'trips': apiObj.data})
+  })
+
   //authenticate page
   router.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'email']}));
 
   //after login, redirect 
   router.get('/auth/google/callback', passport.authenticate('google', {
-    successRedirect: '/profile',
+    successRedirect: '/index',
   	failureRedirect: '/auth/google' 
   }));
+
+  //rider confirmation page
+  router.get('riderConfirmation', function(req, res){
+    //TODO: pass price & car model
+    res.render('riderConfirmation', {})
+  })
+
+  //driver confirmation page
+  router.get('/driverConfirmation', function(req, res){
+    res.render('driverConfirmation', null)
+  })
 
   //TODO: add log out page?  
   console.log('html-routes.js is loaded')
