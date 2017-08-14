@@ -94,6 +94,7 @@ api.func = function (app, passport) {
       driverOriginCity: req.body.originAddress.slice(req.body.originAddress.indexOf(',') + 2),
       price: req.body.price,
       driverId: id,
+      riderID: 0,
       startTime: detailDay
     }).then(function(data) {
       // console.log(data)

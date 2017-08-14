@@ -27,10 +27,8 @@ CREATE TABLE trips (
   updatedAt timestamp DEFAULT current_timestamp,
   PRIMARY KEY (id),
   FOREIGN KEY (driverId)
-    REFERENCES users(id),
-  FOREIGN KEY (riderId)
     REFERENCES users(id)
-    ON UPDATE CASCADE
+  
 );
 
 SET time_zone='-07:00';
