@@ -27,10 +27,8 @@ CREATE TABLE trips (
   updatedAt timestamp DEFAULT current_timestamp,
   PRIMARY KEY (id),
   FOREIGN KEY (driverId)
-    REFERENCES users(id),
-  FOREIGN KEY (riderId)
     REFERENCES users(id)
-    ON UPDATE CASCADE
+  
 );
 
 SET time_zone='-07:00';
@@ -39,7 +37,10 @@ SET time_zone='-07:00';
 INSERT INTO users (userName, carModel) VALUES ('Alex Ratliff', '2004 Honda Accord');
 INSERT INTO users (userName, carModel) VALUES ('Chi Lu', '');
 INSERT INTO users (userName, carModel) VALUES ('Anish Dabade', '');
-INSERT INTO users (userName, carModel) VALUES ('Eri Nagase', '2015 Dodge Dart');
+INSERT INTO users (userName, carModel) VALUES ('Eri Nagase', '2015 Fiat 500');
+INSERT INTO users (userName, carModel) VALUES ('Jay Leno', '1969 Lamborghini Miura');
+INSERT INTO users (userName, carModel) VALUES ('Oprah Winfrey', '2016 Tesla Model S');
+
 
 SELECT * FROM users;
 SELECT * FROM trips;

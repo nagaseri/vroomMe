@@ -37,7 +37,7 @@ api.func = function (app, passport) {
     var id = req.user.dataValues.id;
     var riderOrigin = req.query.originAddress; 
     var riderDest = req.query.destinationAddress; 
-    var detailDay = day + " " + req.query.time
+    var detailDay = day + " " + req.query.time;
     console.log(`detailDay is ${detailDay}`)
     db.trips.findAll({
       where: {
@@ -94,6 +94,7 @@ api.func = function (app, passport) {
       driverOriginCity: req.body.originAddress.slice(req.body.originAddress.indexOf(',') + 2),
       price: req.body.price,
       driverId: id,
+      riderID: 0,
       startTime: detailDay
     }).then(function(data) {
       // console.log(data)
