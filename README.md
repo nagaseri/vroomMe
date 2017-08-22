@@ -5,7 +5,7 @@
 
 ## Overview
   
-  An app to connect passengers to drivers based on merit, car model, and price for a safe commute to work!
+  A carpooling app to connect passengers to drivers based on merit, car model, and price for a safe commute to work!
 
 
 
