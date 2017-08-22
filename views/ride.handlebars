@@ -1,0 +1,26 @@
+<h2>Fill Out Your Rider Information</h2>
+<form class="create-update-form" action="/" method="POST">
+
+  <div class="form-group">
+    <label for="time">Time Range of Departure: </label>
+      <input type="time" id="startTime">
+      <input type="time" id="endTime">
+  </div>
+  <br>
+
+  <div class="form-group">
+    <label for="trip">Origin: </label><br>
+      <input type="text" name="tripOrigin"> <br>
+      <br>
+    <label for="trip">Destination: </label><br>
+      <input type="text" name="tripDestination"> <br>
+  </div>
+  <br>
+
+  <div class="checkbox">
+    <label><input type="checkbox" value="">Recurring?</label>
+  </div>
+  <br>
+
+  <button type="search">Search</button>
+</form>

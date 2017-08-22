@@ -1,0 +1,99 @@
+<h1 style='text-align:center; color:black; background-color: white'>Pick a day!</h1>
+
+<div class='container' id='circles'>
+
+  <div class='row' id='rowOne'>
+  {{#each days}}
+  {{#if this.rowOne}}
+    <div class='col-xs-4 day-wrap'>
+      <a href='/query' id={{this.day}}><div class='days center-block'> 
+        <h5>{{this.day}}</h5>
+      </div></a>
+    </div>
+  {{/if}}
+  {{/each}}
+  </div>
+
+  <div class='row' id='rowTwo'>
+    <div class='col-xs-2'></div>
+    {{#each days}}
+    {{#unless this.rowOne}}
+    <div class='col-xs-4 day-wrap'>
+      <a href='/query' id={{this.day}}><div class='days center-block'> 
+        <h5>{{this.day}}</h5>
+      </div></a>
+    </div>
+    {{/unless}}
+    {{/each}}
+    <div class='col-sm-2'></div>
+  </div>
+</div>
+<script>  
+  
+  var today = new Date();
+  var dayOfWeek = today.getDay();
+  //logic to figure out which week to show  
+  var week = []; 
+  var isoWeek = [];
+  var grayDays = []; 
+  for (var i = 0; i< 5; i++) {
+    if (dayOfWeek === 6) {
+      week[i] = new Date(new Date().getTime() + (i + 2)* 24 * 60 * 60 * 1000);
+      isoWeek[i] = new Date(new Date().getTime() + (i + 2)* 24 * 60 * 60 * 1000).toISOString();
+    } else {
+      var dayShift = i + 1 - dayOfWeek;
+      if (dayShift < 0) grayDays.push(i);
+      week[i] = new Date(new Date().getTime() + dayShift * 24 * 60 * 60 * 1000);
+      isoWeek[i] = new Date(new Date().getTime() + dayShift * 24 * 60 * 60 * 1000).toISOString();
+
+    }
+  }
+  //logic to add attributes to divs
+  $('.days').each(function(i) {
+    var date = (week[i].getMonth() + 1) + "/" + week[i].getDate();
+    $(this).attr('date', date);
+    $(this).attr('full-date', isoWeek[i]);
+    $(this).prepend('<h6>'+ date +'</h6>');
+    //if the day has been passed, turn the bubble to gray
+    if (grayDays.indexOf(i) !== -1) {
+      $(this).css({'background-color': 'gray'});
+      $(this).addClass('graydays');
+    }
+    var $that = $(this)
+    /*$.ajax({
+      method: 'GET',
+      url: '/dataForDays',
+      data: date
+    }).done(function(data){
+      console.log(data);
+      data.forEach(function(v){
+        $that.append(v)
+      })
+    })*/
+  })
+
+  $(".graydays > h5").each(function(){
+    var find = $(this).text();
+    $('#' + find).contents().unwrap();
+  });
+
+  
+
+  $('.days').on('click', function(){
+    var fulldate = $(this).attr('full-date');
+    $.ajax({
+      method: 'GET',
+      url: '/day',
+      data: fulldate
+    }).done(function(data){
+      console.log(date + ' is sent to server!')
+      console.log(data)
+    })
+  })
+
+  //logic to make circles have equal height and width and appropriate font size
+  var cw = $('.days').width();
+  $('h5').css({'font-size':cw*0.5+'px'});
+  $('h6').css({'font-size':cw*0.1+'px'});
+  $('.days').css({'height':cw+'px'});
+</script>
