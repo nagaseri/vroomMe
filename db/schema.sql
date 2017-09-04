@@ -29,7 +29,7 @@ CREATE TABLE trips (
   FOREIGN KEY (driverId)
     REFERENCES users(id)
   
-);
+);trips
 
 SET time_zone='-07:00';
 
